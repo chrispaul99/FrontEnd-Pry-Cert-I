@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "mi-veci"
+    }
+  },
+  "defaultProject": "mi-veci",
+  "cli": {
+    "analytics": false
+  }
 }
