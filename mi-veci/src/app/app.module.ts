@@ -1,33 +1,47 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/home/login/login.component';
-import { RegisterComponent } from './components/home/register/register.component';
-import { PanelComercianteComponent } from './components/panel-comerciante/panel-comerciante.component';
-import { PanelClienteComponent } from './components/panel-cliente/panel-cliente.component';
-import { PanelAdministradorComponent } from './components/panel-administrador/panel-administrador.component';
+import { EmailService } from './services/Email/email.service';
+import { ServiceInterceptor } from './services/Interceptor/service.interceptor';
+import { PersonaService } from './services/Persona/persona.service';
+import { DireccionService } from './services/Direccion/direccion.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RolPipe } from './shared/pipes/rol.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    PanelComercianteComponent,
-    PanelClienteComponent,
-    PanelAdministradorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    EmailService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServiceInterceptor,
+      multi: true
+    },
+    PersonaService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServiceInterceptor,
+      multi: true
+    },
+    DireccionService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServiceInterceptor,
+      multi: true
+    },
+    {
+      provide: LOCALE_ID,
+      useValue : 'es-EC'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

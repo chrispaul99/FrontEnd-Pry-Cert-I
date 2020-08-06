@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'assets/js/home/icofont/icofont.min.css';
+@import 'assets/js/home/boxicons/css/boxicons.min.css';
+@import 'assets/js/home/remixicon/remixicon.css';
+@import 'assets/js/home/venobox/venobox.css';
+@import 'assets/js/home/owl.carousel/assets/owl.carousel.min.css';
+@import 'assets/js/home/aos/aos.css';
+@import 'assets/css/home/home.css';
