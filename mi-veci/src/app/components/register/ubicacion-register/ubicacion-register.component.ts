@@ -36,7 +36,6 @@ export class UbicacionRegisterComponent implements OnInit {
       latitud: [''],
       longitud: [''],
     });
-    this.form.controls.ciudad.disable();
     this.direccion();
   }
   // tslint:disable-next-line: typedef
@@ -78,14 +77,10 @@ marcador(){
         this.ubicacion.direccion.latitud = marker._lngLat.lat;
         this.ubicacion.direccion.longitud = marker._lngLat.lng;
         console.log('DRAG: ' + marker.getLngLat());
-        this.ubicacion.direccion.ciudad = 'Ambato';
-        this.ubicacion.direccion.referencia = 'Sede';
         });
         console.log('CLICK' + lon + ' / ' + lat);
         this.ubicacion.direccion.latitud = lat;
         this.ubicacion.direccion.longitud = lon;
-        this.ubicacion.direccion.ciudad = 'Ambato';
-        this.ubicacion.direccion.referencia = 'Sede';
         this.ubicacion.direccion.nombre = 'Dirección: ' + this.ubicacion.nombres + ' ' + this.ubicacion.apellidos;
         console.log(this.ubicacion.direccion.nombre);
     }

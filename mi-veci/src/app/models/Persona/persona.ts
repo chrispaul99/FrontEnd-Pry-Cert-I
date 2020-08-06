@@ -12,3 +12,7 @@ export class Persona {
     rol = 'C';
     idDireccion: number;
 }
+export class Login{
+    correo: string;
+    password: string;
+}

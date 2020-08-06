@@ -12,124 +12,22 @@
 
                     <div class="row" data-aos="zoom-in">
 
-                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                            <img src="assets/img/home/negocios/negocio-1.png" class="img-fluid" alt="">
+                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" *ngFor="let x of negocios">
+                            <img src="{{x.imagen}}" class="img-fluid" alt="">
                         </div>
-
-                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                            <img src="assets/img/home/negocios/negocio-2.png" class="img-fluid" alt="">
-                        </div>
-
-                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                            <img src="assets/img/home/negocios/negocio-3.png" class="img-fluid" alt="">
-                        </div>
-
-                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                            <img src="assets/img/home/negocios/negocio-4.png" class="img-fluid" alt="">
-                        </div>
-
-                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                            <img src="assets/img/home/negocios/negocio-5.png" class="img-fluid" alt="">
-                        </div>
-
-                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                            <img src="assets/img/home/negocios/negocio-6.png" class="img-fluid" alt="">
-                        </div>
-
                     </div>
 
                 </div>
             </section>
             <!-- Fin de Negocios Randomicos -->
-            <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                <li data-filter="*" class="filter-active">Todos</li>
-                <li data-filter=".filter-app">Ambato</li>
-                <li data-filter=".filter-card">Latacunga</li>
-                <li data-filter=".filter-web">Puyo</li>
-            </ul>
-
-            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-img"><img src="assets/img/home/negocios/negocio-7.jpg" class="img-fluid" alt=""></div>
+            <div class="row" data-aos="fade-up" data-aos-delay="600">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-web" *ngFor="let x of negocios">
+                    <div class="portfolio-img"><img src="{{x.imagen}}" class="img-fluid" alt=""></div>
                     <div class="portfolio-info">
-                        <h4>Negocio</h4>
-                        <p>Ciudad</p>
-                        <a href="assets/img/home/negocios/negocio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a href="#" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-img"><img src="assets/img/home/negocios/negocio-7.jpg" class="img-fluid" alt=""></div>
-                    <div class="portfolio-info">
-                        <h4>Negocio</h4>
-                        <p>Ciudad</p>
-                        <a href="assets/img/home/negocios/negocio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a href="#" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-img"><img src="assets/img/home/negocios/negocio-7.jpg" class="img-fluid" alt=""></div>
-                    <div class="portfolio-info">
-                        <h4>Negocio</h4>
-                        <p>Ciudad</p>
-                        <a href="assets/img/home/negocios/negocio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a href="#" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-img"><img src="assets/img/home/negocios/negocio-7.jpg" class="img-fluid" alt=""></div>
-                    <div class="portfolio-info">
-                        <h4>Negocio</h4>
-                        <p>Ciudad</p>
-                        <a href="assets/img/home/negocios/negocio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a href="#" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-img"><img src="assets/img/home/negocios/negocio-7.jpg" class="img-fluid" alt=""></div>
-                    <div class="portfolio-info">
-                        <h4>Negocio</h4>
-                        <p>Ciudad</p>
-                        <a href="assets/img/home/negocios/negocio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a href="#" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-img"><img src="assets/img/home/negocios/negocio-7.jpg" class="img-fluid" alt=""></div>
-                    <div class="portfolio-info">
-                        <h4>Negocio</h4>
-                        <p>Ciudad</p>
-                        <a href="assets/img/home/negocios/negocio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a href="#" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-img"><img src="assets/img/home/negocios/negocio-7.jpg" class="img-fluid" alt=""></div>
-                    <div class="portfolio-info">
-                        <h4>Negocio</h4>
-                        <p>Ciudad</p>
-                        <a href="assets/img/home/negocios/negocio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a href="#" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-img"><img src="assets/img/home/negocios/negocio-7.jpg" class="img-fluid" alt=""></div>
-                    <div class="portfolio-info">
-                        <h4>Negocio</h4>
-                        <p>Ciudad</p>
-                        <a href="assets/img/home/negocios/negocio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a href="#" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-img"><img src="assets/img/home/negocios/negocio-7.jpg" class="img-fluid" alt=""></div>
-                    <div class="portfolio-info">
-                        <h4>Negocio</h4>
-                        <p>Ciudad</p>
-                        <a href="assets/img/home/negocios/negocio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a href="#" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
+                        <h4>{{x.nombre}}</h4>
+                        <p>{{x.categoria}}</p>
+                        <a href="{{x.imagen}}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
+                        <a routerLink="/login" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -147,38 +45,12 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100" *ngFor="let x of productos">
                     <div class="icon-box">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4><a href="">Producto - Precio</a></h4>
-                        <p>Imagen</p>
+                        <img src="{{x.imagen}}" class="img-fluid" alt="">
+                        <p><b><span>{{x.nombre}}</span></b> - <span>{{x.precio}}$</span></p>
                     </div>
                 </div>
-
-                <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4><a href="">Producto - Precio</a></h4>
-                        <p>Imagen</p>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4><a href="">Producto - Precio</a></h4>
-                        <p>Imagen</p>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4><a href="">Producto - Precio</a></h4>
-                        <p>Imagen</p>
-                    </div>
-                </div>
-
             </div>
 
         </div>

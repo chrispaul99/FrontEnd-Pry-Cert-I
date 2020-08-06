@@ -26,7 +26,9 @@
                         "styles": [
                             "node_modules/ng-wizard/themes/ng_wizard_theme_arrows.min.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "src/styles.css"
+                            "node_modules/bootstrap/scss/bootstrap.scss",
+                            "src/styles.css",
+                            "node_modules/ngx-toastr/toastr.css"
                         ],
                         "scripts": [
 

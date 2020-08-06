@@ -36,10 +36,6 @@ import { RolPipe } from './shared/pipes/rol.pipe';
       provide: HTTP_INTERCEPTORS,
       useClass: ServiceInterceptor,
       multi: true
-    },
-    {
-      provide: LOCALE_ID,
-      useValue : 'es-EC'
     }
   ],
   bootstrap: [AppComponent]

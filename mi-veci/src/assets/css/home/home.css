@@ -756,13 +756,13 @@
     
     .services .icon-box {
         box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);
-        padding: 50px 30px;
+        padding: 10px 30px;
         transition: all ease-in-out 0.4s;
         background: #fff;
     }
     
     .services .icon-box .icon {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
     
     .services .icon-box .icon i {
@@ -825,7 +825,7 @@
     }
     
     .portfolio .portfolio-item {
-        margin-bottom: 30px;
+        margin-bottom: 50px;
     }
     
     .portfolio .portfolio-item .portfolio-img {
