@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<div class="wrapper">
+    <app-siderbar-cliente></app-siderbar-cliente>
+    <div class="main-header">
+        <app-navbar-cliente></app-navbar-cliente>
+    </div>
+    <div class="main-panel">
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

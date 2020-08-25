@@ -9,7 +9,6 @@ import { ServiceInterceptor } from './services/Interceptor/service.interceptor';
 import { PersonaService } from './services/Persona/persona.service';
 import { DireccionService } from './services/Direccion/direccion.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RolPipe } from './shared/pipes/rol.pipe';
 @NgModule({
   declarations: [
     AppComponent,

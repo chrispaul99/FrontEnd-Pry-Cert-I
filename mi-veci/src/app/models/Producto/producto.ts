@@ -1,3 +1,5 @@
+import { Negocio } from '../Negocio/negocio';
+
 export class Producto {
     idProducto: number;
     nombre: string;
@@ -8,4 +10,5 @@ export class Producto {
     disponibilidad: boolean;
     imagen: string;
     idNegocio: number;
+    Negocio: Negocio;
 }

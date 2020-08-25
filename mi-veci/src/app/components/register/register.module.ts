@@ -12,6 +12,7 @@ import { ConfirmacionRegisterComponent } from './confirmacion-register/confirmac
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RolPipe } from '../../shared/pipes/rol.pipe';
+import { SharedModule } from 'src/app/shared/pipes/shared/shared.module';
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.arrows
 };
@@ -24,6 +25,7 @@ const ngWizardConfig: NgWizardConfig = {
     RegisterRoutingModule,
     NgWizardModule.forRoot(ngWizardConfig),
     ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class RegisterModule { }

@@ -1,0 +1,7 @@
+@import '../../../../../../../assets/css/cliente/css/atlantis.css';
+@import '../../../../../../../assets/css/cliente/css/demo.css';
+.imagen {
+    width: 50%;
+    height: 50%;
+    margin-left: 25%;
+}

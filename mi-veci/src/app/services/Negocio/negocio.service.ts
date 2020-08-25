@@ -15,6 +15,7 @@ export class NegocioService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      // tslint:disable-next-line: object-literal-key-quotes
       'Accept': 'application/json'
     })
   };
@@ -25,11 +26,17 @@ export class NegocioService {
     return this.http.get<Negocio[]>(this.url, this.httpOptions).pipe(retry(1));
   }
 
-  setNombreNegocio(nombre: string): void{
-    this.nombreNegocio = nombre;
+  retrieve(id: number): Observable<Negocio> {
+    return this.http.get<Negocio>(this.url + '/' + id, this.httpOptions)
+      .pipe(
+        retry(1)
+      );
   }
-
-  getNombreNegocio(): string {
-    return this.nombreNegocio;
+  save(n: Negocio): Observable<any> {
+    const negocioBody = JSON.stringify(n);
+    if (n.idNegocio === undefined) {
+      return this.http.post<any>(this.url, negocioBody, this.httpOptions);
+    }
+    return this.http.put<any>(this.url, negocioBody, this.httpOptions);
   }
 }

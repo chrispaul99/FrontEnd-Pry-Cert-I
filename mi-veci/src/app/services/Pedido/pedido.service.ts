@@ -10,11 +10,10 @@ import { retry } from 'rxjs/operators';
 export class PedidoService {
 
   url = 'https://localhost:44375/api/Pedidos';
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Accept: 'application/json'
+      'Accept': 'application/json'
     })
   };
 
@@ -28,7 +27,7 @@ export class PedidoService {
     // return this.http.put<any>(this.url, alumnoBody, this.httpOptions);
   }
 
-  filtrar(id: number): Observable<Pedido> {
-    return this.http.get<Pedido>(this.url + '/Filter?id=' + id, this.httpOptions).pipe(retry(1));
+  filtrar(id: number): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(this.url + '/MyOrders/?id=' + id, this.httpOptions).pipe(retry(1));
   }
 }

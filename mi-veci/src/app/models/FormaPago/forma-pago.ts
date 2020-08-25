@@ -1,4 +1,4 @@
 export class FormaPago {
     idFormaPago: number;
-    tipo: string;
+    tipo: string = "Efectivo";
 }

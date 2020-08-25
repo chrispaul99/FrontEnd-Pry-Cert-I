@@ -19,7 +19,6 @@ export class ServiceInterceptor implements HttpInterceptor {
     return response.handle(request).do(next => {
       if (next instanceof HttpResponse){
         // tslint:disable-next-line: no-console
-        console.info(next);
         if (next.status === 201)
         {
           Swal.fire({
@@ -28,6 +27,7 @@ export class ServiceInterceptor implements HttpInterceptor {
             icon : 'success'
           });
         }
+        /*
         if(next.status === 200)
         {
           Swal.fire({
@@ -35,10 +35,11 @@ export class ServiceInterceptor implements HttpInterceptor {
             text : next.body,
             icon : "success"
           });
-        }
+        }*/
       }
     }, error => {
       console.error(error);
+      /*
       if (error.status === 400)
         {
           Swal.fire({
@@ -55,6 +56,7 @@ export class ServiceInterceptor implements HttpInterceptor {
             icon : 'error'
           });
         }
+        */
     });
   }
 }

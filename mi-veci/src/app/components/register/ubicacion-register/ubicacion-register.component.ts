@@ -1,13 +1,10 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { faCity, faSdCard, faGlobeEurope, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { PersonaService } from 'src/app/services/Persona/persona.service';
 import { Direccion } from '../../../models/Direccion/direccion';
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import { environment } from 'src/environments/environment';
 import { Persona } from '../../../models/Persona/persona';
-import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-ubicacion-register',
   templateUrl: './ubicacion-register.component.html',

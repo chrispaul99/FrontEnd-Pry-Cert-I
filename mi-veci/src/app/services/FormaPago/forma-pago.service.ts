@@ -20,7 +20,7 @@ export class FormaPagoService {
 
   constructor(private http: HttpClient) { }
 
-  buscar(id: number): Observable<FormaPago> {
-    return this.http.get<FormaPago>(this.url + '/' + id, this.httpOptions).pipe(retry(1));
+  getFormaPago(): Observable<FormaPago[]> {
+    return this.http.get<FormaPago[]>(this.url, this.httpOptions).pipe(retry(1));
   }
 }
