@@ -127,10 +127,10 @@ export class ListaClienteComponent implements OnInit {
         });
     },(error)=>console.log(error),
     ()=>{
+      //this.EnviarPedidos();
       this.router.navigate(['/Cliente/Main/Pedidos']);
       this.pedidoFinal = undefined;
       this.detalleService.setListaDetalles([]);
-      console.log(this.detalleService.getListaDetalles());
     } );
   }
   borrarLista(): void {
@@ -232,5 +232,26 @@ export class ListaClienteComponent implements OnInit {
     this.pedidoFinal.Persona = null;
     this.pedidoFinal.idFormaPago =1;
     this.pedidoFinal.FormaPago = null;
+  }
+
+  EnviarPedidos(){
+    for (let i = 0; i < 100; i++) {
+      this.pedidoService.create(this.pedidoFinal).subscribe(result=>{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: "Lista de Compras enviada",
+          showConfirmButton: false,
+          timer: 1500
+        });
+    },(error)=>console.log(error),
+    ()=>{
+      //this.router.navigate(['/Cliente/Main/Pedidos']);
+      //this.pedidoFinal = undefined;
+      //this.detalleService.setListaDetalles([]);
+      //console.log(this.detalleService.getListaDetalles());
+    } );
+    }
+    
   }
 }
