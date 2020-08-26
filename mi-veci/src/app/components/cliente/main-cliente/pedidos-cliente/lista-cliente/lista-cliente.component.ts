@@ -115,6 +115,8 @@ export class ListaClienteComponent implements OnInit {
   Enviar(){
     console.log(this.pedidoFinal);
     this.crearPedido();
+    console.log('Paso!!!');
+    console.log(this.pedidoFinal);
     this.pedidoService.create(this.pedidoFinal).subscribe(result=>{
         Swal.fire({
           position: 'top-end',
@@ -127,6 +129,8 @@ export class ListaClienteComponent implements OnInit {
     ()=>{
       this.router.navigate(['/Cliente/Main/Pedidos']);
       this.pedidoFinal = undefined;
+      this.detalleService.setListaDetalles([]);
+      console.log(this.detalleService.getListaDetalles());
     } );
   }
   borrarLista(): void {

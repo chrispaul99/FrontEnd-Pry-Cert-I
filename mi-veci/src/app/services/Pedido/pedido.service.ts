@@ -13,7 +13,7 @@ export class PedidoService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      Accept: 'application/json'
     })
   };
 
@@ -21,6 +21,7 @@ export class PedidoService {
 
   create(p: Pedido): Observable<any> {
     const pedidoBody = JSON.stringify(p);
+    console.log(pedidoBody);
     if (p.idPedido === undefined) {
       return this.http.post<any>(this.url, pedidoBody, this.httpOptions);
     }

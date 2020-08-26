@@ -39,7 +39,6 @@ export class ServiceInterceptor implements HttpInterceptor {
       }
     }, error => {
       console.error(error);
-      /*
       if (error.status === 400)
         {
           Swal.fire({
@@ -48,6 +47,7 @@ export class ServiceInterceptor implements HttpInterceptor {
             icon : 'error'
           });
         }
+        /*
       if (error.status === 0)
         {
           Swal.fire({
