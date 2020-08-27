@@ -228,7 +228,9 @@ export class ListaClienteComponent implements OnInit {
       detalle.idDetalle = null;
       detalle.idProducto = detalle.Producto.idProducto;
     });
-    this.pedidoFinal.idCliente = 2;
+    var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    var id = payLoad.nameid;
+    this.pedidoFinal.idCliente = id;
     this.pedidoFinal.Persona = null;
     this.pedidoFinal.idFormaPago =1;
     this.pedidoFinal.FormaPago = null;

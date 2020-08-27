@@ -14,7 +14,8 @@ export class MisPedidosClienteComponent implements OnInit {
   constructor(private pedidosService:PedidoService) { }
 
   ngOnInit(): void {
-    this.pedidosService.filtrar(2).subscribe(
+    var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    this.pedidosService.filtrar(payLoad.nameid).subscribe(
       result =>{
         this.misPedidos = result;
       }

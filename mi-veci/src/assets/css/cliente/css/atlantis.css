@@ -13842,11 +13842,8 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:last-chil
         width: 100%;
         margin-right: 0 !important;
     }
-    .navbar-header {
-        position: absolute;
-        width: 100%;
-        transform: translate3d(0, -200px, 0) !important;
-        transition: all .5s;
+    .main-header .navbar-header {
+        min-height: 0px;
     }
     .topbar_open .navbar-header {
         transform: translate3d(0, 61px, 0) !important;

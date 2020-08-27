@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgWizardConfig, THEME, StepChangedArgs, NgWizardService, TOOLBAR_POSITION, TOOLBAR_BUTTON_POSITION } from 'ng-wizard';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 import { Persona } from 'src/app/models/Persona/persona';
+import { LoginService } from '../../services/Login/login.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -19,11 +20,12 @@ export class RegisterComponent implements OnInit {
     // tslint:disable-next-line: max-line-length
   };
 
-  constructor(private ngWizardService: NgWizardService, private personaService: PersonaService) {
+  constructor(private ngWizardService: NgWizardService, private personaService: PersonaService,private auth: LoginService) {
   }
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
+    this.auth.sesionOpen();
     this.persona = new Persona();
   }
 

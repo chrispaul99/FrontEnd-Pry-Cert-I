@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HIDEROUTES } from '../../siderbar-cliente/siderbar-cliente.component';
 
 @Component({
   selector: 'app-negocios-cliente',
