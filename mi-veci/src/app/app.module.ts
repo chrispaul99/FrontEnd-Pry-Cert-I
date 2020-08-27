@@ -9,6 +9,7 @@ import { ServiceInterceptor } from './services/Interceptor/service.interceptor';
 import { PersonaService } from './services/Persona/persona.service';
 import { DireccionService } from './services/Direccion/direccion.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NegocioService } from './services/Negocio/negocio.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,11 @@ import { ReactiveFormsModule } from '@angular/forms';
       multi: true
     },
     DireccionService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServiceInterceptor,
+      multi: true
+    },
+    NegocioService, {
       provide: HTTP_INTERCEPTORS,
       useClass: ServiceInterceptor,
       multi: true

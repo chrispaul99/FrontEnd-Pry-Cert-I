@@ -13,7 +13,6 @@ import { SharedModule } from 'src/app/shared/pipes/shared/shared.module';
     CommonModule,
     LoginRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     SharedModule
   ]
 })

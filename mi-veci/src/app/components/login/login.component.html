@@ -7,21 +7,23 @@
                 </a>
             </div>
             <a href="/" class="circle"><i class="fa fa-home"></i></a>
-            <form class="login100-form validate-form">
+            <form class="login100-form validate-form" (ngSubmit)="login( f )" #f="ngForm">
                 <span class="login100-form-title">
                     Iniciar Sesión
                 </span>
 
-                <div class="wrap-input100 validate-input" data-validate="Ingrese un correo válido: abc@abc.xyz">
-                    <input class="input100" type="text" name="email" placeholder="Correo Electrónico">
+                <div class="wrap-input100 validate-input">
+
+                    <input class="input100" type="text" name="correo" [(ngModel)]="usuario.correo" required email placeholder="Correo Electrónico">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Contraseña requerida">
-                    <input class="input100" type="password" name="pass" placeholder="Contraseña">
+                <div class="wrap-input100 validate-input">
+
+                    <input class="input100" type="password" name="pass" [(ngModel)]="usuario.password" required minlength="5" placeholder="Contraseña">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-lock" aria-hidden="true"></i>
@@ -29,7 +31,7 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" (click)='validacion()'>
+                    <button class="login100-form-btn" type="submit">
                         INGRESAR
                     </button>
                 </div>

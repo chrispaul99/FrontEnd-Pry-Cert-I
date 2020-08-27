@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faUserPlus, IconDefinition, faHome, faStar, faBoxOpen, faUser, faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import { Persona } from 'src/app/models/Persona/persona';
 
 export interface RouteInfo {
   path: string;
@@ -29,12 +30,18 @@ export class SiderbarClienteComponent implements OnInit {
 
   faUser = faUser;
   faEdit = faUserEdit;
+  persona:Persona;
   constructor() { }
 
   public menuItems: any[];
     // tslint:disable-next-line: typedef
     ngOnInit() {
-        this.menuItems = ROUTES.filter(menuItem => menuItem);
+      this.menuItems = ROUTES.filter(menuItem => menuItem);
+      this.persona = new Persona();
+      var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+      this.persona.nombres = payLoad.Nombres;
+      this.persona.apellidos = payLoad.Apellidos;
+      this.persona.rol = payLoad.rol;
     }
 
 }
