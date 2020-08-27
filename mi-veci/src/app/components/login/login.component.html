@@ -1,0 +1,54 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <a routerLink="/">
+                    <img src="assets/img/home/logo/logo-black.svg" alt="IMG">
+                </a>
+            </div>
+            <a href="/" class="circle"><i class="fa fa-home"></i></a>
+            <form class="login100-form validate-form" (ngSubmit)="login( f )" #f="ngForm">
+                <span class="login100-form-title">
+                    Iniciar Sesión
+                </span>
+
+                <div class="wrap-input100 validate-input">
+
+                    <input class="input100" type="text" name="correo" [(ngModel)]="usuario.correo" required email placeholder="Correo Electrónico">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+
+                    <input class="input100" type="password" name="pass" [(ngModel)]="usuario.password" required minlength="5" placeholder="Contraseña">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit">
+                        INGRESAR
+                    </button>
+                </div>
+
+                <div class="text-center p-t-12">
+                    <a class="txt1" routerLink="/register">
+                        ¿Olvidó el usuario o la contraseña?
+                    </a>
+                </div>
+
+                <div class="text-center p-t-50">
+                    <a class="txt2" routerLink="/register">
+                        Registrarse
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

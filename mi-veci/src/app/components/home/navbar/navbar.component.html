@@ -1,0 +1,29 @@
+<header id="header" class="fixed-top ">
+    <nav id="mainNavbar" class="navbar navbar-expand-sm">
+        <div class="container d-flex align-items-center">
+            <a routerLink="/Home" class="logo mr-auto">
+                <img src="assets/img/home/logo/logo.svg" alt="" width="150px" class="img-fluid">
+            </a>
+            <button class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="collapsed = !this.collapsed">
+            <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+          </button>
+            <div id="navbarSupportedContent" [ngClass]="{ collapse: collapsed, 'navbar-collapse': true }">
+                <!-- right nav menus -->
+                <ul class="navbar-nav ml-auto nav-menu">
+                    <li routerLinkActive="active" class=" m-auto">
+                        <a href="#portfolio" class="nav-link enlace"> Tiendas </a>
+                    </li>
+                    <li routerLinkActive="active" class="nav-item m-auto">
+                        <a href="#services" class="nav-link enlace"> Productos </a>
+                    </li>
+                    <li routerLinkActive="active" class="nav-item m-auto">
+                        <a href="#about" class="nav-link enlace"> ¿Quiénes Somos? </a>
+                    </li>
+                    <li routerLinkActive="active" class="nav-item m-auto">
+                        <a routerLink="/login" class="nav-link get-started-btn">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
