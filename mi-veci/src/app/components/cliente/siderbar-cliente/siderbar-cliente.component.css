@@ -1,2 +1,9 @@
 @import '../../../../assets/css/cliente/css/atlantis.css';
 @import '../../../../assets/css/cliente/css/demo.css';
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}

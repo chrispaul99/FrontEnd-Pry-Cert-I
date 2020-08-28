@@ -77,25 +77,21 @@ warning-color : #ffa534
 danger-color : #f3545d
 
 -------------------------------------------------------------------*/
- 
+
 @import "atlantis/variables";
 @import "atlantis/outlinefocus";
 @import "atlantis/typography";
 @import "atlantis/opacity";
-
 //layouts
 @import "atlantis/layouts";
 @import "atlantis/layouts-colors";
-
 //components
 @import "atlantis/components";
-
 //plugins
 @import "atlantis/plugins";
-
 //responsive
 @import "atlantis/responsive";
-
 //Background
 @import "atlantis/background";
-
+//Cards
+@import "atlantis/cards"

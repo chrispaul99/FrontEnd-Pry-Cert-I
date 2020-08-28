@@ -13,9 +13,9 @@ export class LogoHeaderClienteComponent implements OnInit {
   faUser = faUserPlus;
   faphone = faPhoneSlash;
   faoption = faEllipsisV;
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

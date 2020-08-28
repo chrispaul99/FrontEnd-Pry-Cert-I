@@ -1,4 +1,7 @@
 <div class="card">
+    <div class="image">
+        <img src="{{producto.imagen}}" alt="Card top image" class="card-img-top">
+    </div>
     <div class="card-body">
         <div class="d-flex justify-content-between">
             <div>
@@ -7,8 +10,6 @@
             </div>
             <h3 class="text-info fw-bold">$ {{producto.precio |number:'1.2'}}</h3>
         </div>
-        <img src="{{producto.imagen}}" class="img-responsive imagen">
-        <br><br>
         <div class="d-flex justify-content-between mt-2">
             <p class="text-muted mb-0"><b>Cantidad</b></p>
             <ul class="pagination pg-primary ">
@@ -30,13 +31,10 @@
             <p class="text-muted mb-0">{{producto.categoria}}</p>
         </div>
         <br>
-        <div class="row">
-            <div class="col-4 col-sm-4 col-md-4"></div>
-            <div class="col-8 col-sm-8 col-md-8">
-                <button type="button" (click)="crearDetalle()" class="btn btn-icon btn-round btn-info">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" (click)="crearDetalle()" class="btn btn-icon btn-round btn-info">
+                <i class="fa fa-plus"></i>
+            </button>
         </div>
     </div>
 </div>

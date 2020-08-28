@@ -30,7 +30,7 @@ export class SiderbarClienteComponent implements OnInit {
 
   faUser = faUser;
   faEdit = faUserEdit;
-  persona:Persona;
+  persona: Persona;
   constructor() { }
 
   public menuItems: any[];
@@ -38,10 +38,9 @@ export class SiderbarClienteComponent implements OnInit {
     ngOnInit() {
       this.menuItems = ROUTES.filter(menuItem => menuItem);
       this.persona = new Persona();
-      var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+      const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
       this.persona.nombres = payLoad.Nombres;
       this.persona.apellidos = payLoad.Apellidos;
       this.persona.rol = payLoad.rol;
     }
-
 }
