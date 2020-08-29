@@ -1,10 +1,38 @@
-<div class="wrapper">
-    <app-siderbar-cliente></app-siderbar-cliente>
-    <div class="main-header">
-        <app-navbar-cliente></app-navbar-cliente>
+<div class="d-flex" id="wrapper">
+    <div class="border-right" id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+            <div class="logo-header d-flex justify-content-center" data-background-color="blue">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/home/logo/logo.svg" width="100px" alt="navbar brand">
+                </a>
+            </div>
+            <div class="user">
+                <div class="avatar-sm float-left mr-2">
+                    <img src="assets/img/cliente/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="info">
+                    <a>
+                        <span>
+                            {{persona.nombres}} {{persona.apellidos}}
+                            <span class="user-level">{{persona.rol}}</span>
+                        </span>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <ul class="nav nav-primary">
+                <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
+                    <a [routerLink]="[menuItem.path]">
+                        <i><fa-icon [icon]="menuItem.icon"></fa-icon></i>
+                        <p>{{menuItem.title}}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="main-panel">
-        <div class="content">
+    <div id="page-content-wrapper">
+        <app-navbar-cliente></app-navbar-cliente>
+        <div class="container-fluid">
             <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>

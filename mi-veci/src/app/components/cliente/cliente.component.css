@@ -1,2 +1,104 @@
 @import '../../../assets/css/cliente/css/atlantis.css';
 @import '../../../assets/css/cliente/css/demo.css';
+@import '../../../assets/css/cliente/css/sidebar-Styles.css';
+.logo-header {
+    height: 64px;
+}
+
+.user {
+    margin-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 12.5px;
+    border-bottom: 1px solid #f1f1f1;
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.avatar-sm {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.mr-2 {
+    margin-right: .5rem!important;
+}
+
+.float-left {
+    float: left!important;
+}
+
+a {
+    padding: 8px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    color: #575962;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    margin-bottom: 3px;
+}
+
+span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #777;
+    display: flex;
+    flex-direction: column;
+}
+
+i {
+    margin-right: 15px;
+    width: 25px;
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.link-collapse {
+    padding: 7px 0;
+}
+
+.nav {
+    display: block;
+    float: none;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-item {
+    padding: 0 15px;
+    display: list-item;
+}
+
+li>a {
+    background: #1572E8 !important;
+    box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), 4px 4px 15px -5px rgba(21, 114, 232, 0.4) !important;
+}
+
+a>i,
+p {
+    color: #ffffff !important;
+}
+
+.info>a {
+    white-space: nowrap;
+    display: block;
+    position: relative;
+}
+
+p {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 0px;
+    margin-right: 5px;
+    white-space: nowrap;
+}

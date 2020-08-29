@@ -1,9 +1,6 @@
 @import '../../../../assets/css/cliente/css/atlantis.css';
 @import '../../../../assets/css/cliente/css/demo.css';
-.closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+@import '../../../../assets/css/cliente/css/sidebar-Styles.css';
+.logo-header {
+    height: 64px;
 }
