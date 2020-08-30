@@ -50,10 +50,7 @@ export class LoginService {
   }
   logout() {
     localStorage.removeItem('token');
-<<<<<<< HEAD
     localStorage.removeItem('expira');
-=======
->>>>>>> 1145586813ea0647e7e116d3e84fe2b54a39c794
   }
   private guardarToken( idToken: string ) {
 
@@ -80,10 +77,7 @@ export class LoginService {
     if ( expiraDate > new Date() ) {
       return true;
     } else {
-<<<<<<< HEAD
       this.logout();
-=======
->>>>>>> 1145586813ea0647e7e116d3e84fe2b54a39c794
       return false;
     }
 
