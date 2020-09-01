@@ -1,0 +1,95 @@
+<div class="loading" *ngIf="loading"></div>
+<div class="page-inner" *ngIf="!loading">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card full-height">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card-title font-weight-bold">{{negocio.nombre}}</div>
+                            <div class="card-category font-weight-bolder">{{negocio.Comerciante.Persona.nombres}} {{negocio.Comerciante.Persona.apellidos}}</div>
+                            <div class="card-category">{{negocio.categoria}}</div>
+                            <div class="card-category font-weight-bolder horarioleft">{{horaApertura(negocio.horarioInicial)}} a {{horaCierre(negocio.horarioFinal)}}</div>
+                            <div class="verdaderoleft" *ngIf="verificarHorario(negocio.horarioInicial,negocio.horarioFinal)">{{verificarHorario(negocio.horarioInicial,negocio.horarioFinal)|booleanNegocio:"Estado"}}</div>
+                            <div class="falsoleft" *ngIf="!verificarHorario(negocio.horarioInicial,negocio.horarioFinal)">{{verificarHorario(negocio.horarioInicial,negocio.horarioFinal)|booleanNegocio:"Estado"}}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="{{negocio.imagen}}" class="img-responsive header-negocio">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+                        <div class="px-2 pb-2 pb-md-0 text-center">
+                            <h6 class="fw-bold mt-3 mb-0">Delivery</h6>
+                            <div class="verdadero" *ngIf="negocio.delivery">
+                                <span class="texto">{{negocio.delivery|booleanNegocio:"Delivery" }}</span>
+                            </div>
+                            <div class="falso" *ngIf="!negocio.delivery">
+                                <span class="texto">{{negocio.delivery|booleanNegocio:"Delivery" }}</span>
+                            </div>
+                        </div>
+                        <div class="px-2 pb-2 pb-md-0 text-center">
+                            <h6 class="fw-bold mt-3 mb-0">Reserva</h6>
+                            <div class="verdadero" *ngIf="negocio.reserva">
+                                <span class="texto">{{negocio.reserva|booleanNegocio:"Reserva" }}</span>
+                            </div>
+                            <div class="falso" *ngIf="!negocio.reserva">
+                                <span class="texto">{{negocio.reserva|booleanNegocio:"Reserva" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card full-height">
+                <div class="card-body">
+                    <div class="card-title font-weight-bold">Ubicación</div>
+                    <div class="row py-3">
+                        <div class="col-md-4 d-flex flex-column justify-content-around">
+                            <div>
+                                <h6 class="fw-bold text-uppercase text-primary op-8">Ciudad</h6>
+                                <h3 class="fw-bold">{{negocio.Direccion.ciudad}}</h3>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-uppercase text-primary op-8">Referencia</h6>
+                                <h3 class="fw-bold">{{negocio.Direccion.referencia}}</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="mapa">
+                                <button class="btn btn-primary btn-round  ubicacion" *ngIf="!ubicacion" (click)="direccion()">
+                                        <i class="fa fa-globe-americas"></i>
+                                        Ver Ubicacion
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <div class="loading" *ngIf="loading"></div>
+    <div *ngIf="!loading">
+        <app-search title="Listado de Productos"></app-search>
+        <br><br>
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+                <button class="btn btn-primary" (click)="enviarListado()">
+                <span class="btn-label">
+                    <i class="fa fa-bookmark"></i>
+                </span>
+                Ver Mi Lista
+            </button>
+
+            </div>
+            <br><br><br>
+
+        </div>
+        <div class="row">
+            <div class="col-3 col-sm-3 col-md-3" *ngFor="let item of productos |paginate: {itemsPerPage: 4, currentPage: pageActual}; index as i">
+                <app-productos-negocio [producto]="item" (miDetalle)="recibirDetalle($event)"></app-productos-negocio>
+            </div>
+        </div>
+    </div>
+    <pagination-controls (pageChange)="pageActual = $event" autoHide="true" responsive="true" previousLabel="" nextLabel=""></pagination-controls>
+</div>

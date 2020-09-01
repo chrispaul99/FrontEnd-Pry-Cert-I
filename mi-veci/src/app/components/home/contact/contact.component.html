@@ -1,0 +1,54 @@
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>¿Quieres Contactarnos?</h2>
+            <p>Necesitas alguna información adicional de como funciona nuestro aplicativo, sugerencias o reclamos, escríbenos y te responderemos</p>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-5 d-flex align-items-stretch">
+                <img src="assets/img/home/otros/contactos.svg" class="img-fluid animated" alt="">
+            </div>
+
+            <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="php-email-form">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="name">Tu nombre</label>
+                            <input formControlName="nombre" type="text" class="form-control form-control-user" [(ngModel)]="email.nombre" [ngClass]="{'is-invalid': submitted && f.nombre.errors}" />
+                            <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                                <div *ngIf="f.nombre.errors.required">El nombre es requerido</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="name">Email</label>
+                            <input formControlName="emisor" type="email" class="form-control form-control-user" [(ngModel)]="email.emisor" [ngClass]="{'is-invalid':submitted || f.emisor.invalid && f.emisor.touched}" />
+                            <div *ngIf="submitted && f.emisor.errors && (f.emisor.invalid || f.emisor.touched)" class="invalid-feedback">
+                                <div *ngIf="f.emisor.errors.required">Su email es requerido</div>
+                                <div *ngIf="f.emisor.errors?.pattern">Ingrese un email válido</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Asunto</label>
+                        <input formControlName="asunto" type="text" class="form-control form-control-user" [(ngModel)]="email.asunto" [ngClass]="{'is-invalid': submitted && f.asunto.errors}" />
+                        <div *ngIf="submitted && f.asunto.errors" class="invalid-feedback">
+                            <div *ngIf="f.asunto.errors.required">El asunto es requerido</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Mensaje</label>
+                        <textarea formControlName="mensaje" type="text" class="form-control form-control-user" [(ngModel)]="email.mensaje" [ngClass]="{'is-invalid': submitted && f.mensaje.errors}"></textarea>
+                        <div *ngIf="submitted && f.mensaje.errors" class="invalid-feedback">
+                            <div *ngIf="f.mensaje.errors.required">El mensaje es requerido</div>
+                        </div>
+                    </div>
+                    <div class="text-center"><button type="submit" style="border: none; outline:0 none">Enviar</button></div>
+                </form>
+                <div id="loading-login" *ngIf="loading"></div>
+            </div>
+
+        </div>
+    </div>
+</section>

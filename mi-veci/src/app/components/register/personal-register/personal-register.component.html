@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="text-center">
+        <fa-icon class="fa-4x" [icon]="faUser"></fa-icon>
+        <h4>{{title}}</h4>
+    </div>
+    <hr>
+</div>
+<form [formGroup]="form" class="user">
+    <div class="card-body">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><fa-icon [icon]='faUser'></fa-icon></span>
+            </div>
+            <input formControlName="nombres" type="text" class="form-control form-control-user" [(ngModel)]="personal.nombres" [ngClass]="{'is-invalid':  f.nombres.errors && f.nombres.invalid && f.nombres.touched}" placeholder="Nombres" />
+
+            <div *ngIf="f.nombres.errors && (f.nombres.invalid || f.nombres.touched)" class="invalid-feedback">
+                <div *ngIf="f.nombres.errors.required">Los nombres son requeridos</div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><fa-icon [icon]='faUser'></fa-icon></span>
+            </div>
+            <input formControlName="apellidos" type="text" class="form-control form-control-user" [(ngModel)]="personal.apellidos" [ngClass]="{'is-invalid':  f.apellidos.errors && f.apellidos.invalid && f.apellidos.touched}" placeholder="Apellidos" />
+
+            <div *ngIf="f.apellidos.errors && (f.apellidos.invalid || f.apellidos.touched)" class="invalid-feedback">
+                <div *ngIf="f.apellidos.errors.required">Los apellidos son requeridos</div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><fa-icon [icon]='faIdCard'></fa-icon></span>
+            </div>
+            <input formControlName="cedula" type="text" class="form-control form-control-user" [(ngModel)]="personal.cedula" [ngClass]="{'is-invalid':f.cedula.errors  && f.cedula.invalid && f.cedula.touched}" placeholder="Cédula" />
+
+            <div *ngIf="f.cedula.errors && (f.cedula.invalid || f.cedula.touched)" class="invalid-feedback">
+                <div *ngIf="f.cedula.errors.required">La cédula es requerida</div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><fa-icon [icon]='famobile'></fa-icon></span>
+            </div>
+            <input formControlName="celular" type="text" class="form-control form-control-user" [(ngModel)]="personal.celular" [ngClass]="{'is-invalid': f.celular.errors && f.celular.invalid && f.celular.touched}" placeholder="Teléfono Celular" />
+
+            <div *ngIf="f.celular.errors && (f.celular.invalid || f.celular.touched)" class="invalid-feedback">
+                <div *ngIf="f.celular.errors.required">El teléfono es requerido</div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><fa-icon [icon]='farol'></fa-icon></span>
+            </div>
+            <select formControlName="rol" [(ngModel)]="personal.rol" [ngClass]="{'is-invalid': submitted && f.rol.errors }" class="form-control form-control-user">
+                <option value="C">Cliente</option>
+                <option value="N">Comerciante</option>             
+            </select>
+        </div>
+    </div>
+</form>
+<hr>

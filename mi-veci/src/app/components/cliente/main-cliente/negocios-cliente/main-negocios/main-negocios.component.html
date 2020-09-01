@@ -1,0 +1,53 @@
+<div class="loading" *ngIf="loading"></div>
+<div class="page-inner" *ngIf="!loading">
+    <app-search title="Negocios Cercanos"></app-search>
+    <br><br>
+    <div class="row">
+        <div class="col-md-3" *ngFor="let negocio of negocios |paginate: {itemsPerPage: 4, currentPage: pageActual}; index as i">
+            <div class="card card-profile">
+                <div class="card-header" class="header-negocio" style="background-image: url('{{negocio.imagen}}');"></div>
+                <div class="">
+                    <div class="user-profile text-center">
+                        <div class="name font-weight-bold">{{negocio.nombre}}</div>
+                        <div class="job font-weight-bolder">{{negocio.Comerciante.Persona.nombres}} {{negocio.Comerciante.Persona.apellidos}}</div>
+                        <div class="job">{{negocio.categoria}}</div>
+                        <div class="font-weight-bolder horario">{{formatoHorario(negocio.horarioInicial,negocio.horarioFinal)[0]}} a {{formatoHorario(negocio.horarioInicial,negocio.horarioFinal)[1]}}</div>
+                        <div class="verdadero" *ngIf="verificarHorario(negocio.horarioInicial,negocio.horarioFinal)">{{verificarHorario(negocio.horarioInicial,negocio.horarioFinal)|booleanNegocio:"Estado"}}</div>
+                        <div class="falso" *ngIf="!verificarHorario(negocio.horarioInicial,negocio.horarioFinal)">{{verificarHorario(negocio.horarioInicial,negocio.horarioFinal)|booleanNegocio:"Estado"}}</div>
+                        <div class="social-media">
+                            <a rel="publisher" href="#">
+                                <span class="btn-label just-icon"><i class="fa fa-whatsapp"></i> {{negocio.Comerciante.Persona.celular}}</span>
+                            </a>
+                        </div>
+                        <div class="btn-producto">
+                            <a [routerLink]="['/Cliente/Main/Negocios/Selected', negocio.idNegocio]" class="btn btn-primary text-white producto">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row user-stats text-center">
+                        <div class="col">
+                            <div class="number font-weight-bold">Delivery</div>
+                            <div class="circle-verdadero" *ngIf="negocio.delivery">
+                                <fa-icon [icon]="faCheck" class="fa-2x"></fa-icon>
+                            </div>
+                            <div class="circle-falso" *ngIf="!negocio.delivery">
+                                <fa-icon [icon]="fatimes" class="fa-2x"></fa-icon>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="number font-weight-bold">Reserva</div>
+                            <div class="circle-verdadero" *ngIf="negocio.reserva">
+                                <fa-icon [icon]="faCheck" class="fa-2x"></fa-icon>
+                            </div>
+                            <div class="circle-falso" *ngIf="!negocio.reserva">
+                                <fa-icon [icon]="fatimes" class="fa-2x"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls (pageChange)="pageActual = $event" autoHide="true" responsive="true" previousLabel="" nextLabel=""></pagination-controls>
+</div>
