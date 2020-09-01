@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { SearchComponent } from '../../../components/search/search.component';
 import { ProductosNegocioComponent } from '../../../components/cliente/main-cliente/negocios-cliente/only-negocio/productos-negocio/productos-negocio.component';
-import { NegocioCardComponent } from '../../../components/cliente/main-cliente/negocios-cliente/main-negocios/negocio-card/negocio-card.component';
 import { BooleanNegocioPipe } from '../boolean-negocio.pipe';
 import { NoImagePipe } from '../no-image.pipe';
 import { ListadoClienteComponent } from '../../../components/cliente/main-cliente/pedidos-cliente/listado-cliente/listado-cliente.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NegocioCardComponent } from '../../../components/cliente/main-cliente/negocios-cliente/main-negocios/negocio-card/negocio-card.component';
 
 
 @NgModule({
@@ -16,22 +16,22 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     SearchComponent,
     ListadoClienteComponent,
-    ProductosNegocioComponent,
     NegocioCardComponent,
+    ProductosNegocioComponent,
     BooleanNegocioPipe,
     NoImagePipe
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   exports: [
     FooterComponent,
     SearchComponent,
+    NegocioCardComponent,
     ListadoClienteComponent,
     ProductosNegocioComponent,
-    NegocioCardComponent,
     BooleanNegocioPipe,
     NoImagePipe
   ]

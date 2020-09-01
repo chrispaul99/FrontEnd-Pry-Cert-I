@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { Negocio } from 'src/app/models/Negocio/negocio';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-negocio-card',
@@ -12,7 +14,7 @@ export class NegocioCardComponent implements OnInit {
   @Input() negocio: Negocio;
   faCheck = faCheckCircle;
   fatimes = faTimesCircle;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -60,5 +62,8 @@ export class NegocioCardComponent implements OnInit {
     }
     return false;
     }
-
+    Direccionar(){
+      this.router.navigateByUrl('/Cliente/Main/Negocios/Selected/'+this.negocio.idNegocio);
+      
+    }
 }

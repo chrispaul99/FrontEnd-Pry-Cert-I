@@ -9,18 +9,19 @@ import { PedidoService } from '../../../../../services/Pedido/pedido.service';
 })
 export class MisPedidosClienteComponent implements OnInit {
 
-  misPedidos:Pedido[];
-  pedidoSeleccionado:Pedido;
-  constructor(private pedidosService:PedidoService) { }
+  misPedidos: Pedido[];
+  pedidoSeleccionado: Pedido;
+  constructor(private pedidosService: PedidoService) { }
 
   ngOnInit(): void {
-    this.pedidosService.filtrar(2).subscribe(
-      result =>{
+    const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    this.pedidosService.filtrar(payLoad.nameid).subscribe(
+      result => {
         this.misPedidos = result;
       }
-    )
+    );
   }
-  detalles(pedido:Pedido){
+  detalles(pedido: Pedido): void{
     this.pedidoSeleccionado = pedido;
     console.log(this.pedidoSeleccionado);
   }
