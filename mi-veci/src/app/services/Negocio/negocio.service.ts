@@ -15,8 +15,7 @@ export class NegocioService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      // tslint:disable-next-line: object-literal-key-quotes
-      'Accept': 'application/json'
+      Accept: 'application/json'
     })
   };
 
@@ -38,5 +37,9 @@ export class NegocioService {
       return this.http.post<any>(this.url, negocioBody, this.httpOptions);
     }
     return this.http.put<any>(this.url, negocioBody, this.httpOptions);
+  }
+
+  buscarNegocio(criterio: string): Observable<Negocio[]> {
+    return this.http.get<Negocio[]>(this.url + '/Search?criterio=' + criterio, this.httpOptions);
   }
 }

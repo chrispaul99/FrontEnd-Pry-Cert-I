@@ -14,21 +14,21 @@ export class ProductosNegocioComponent implements OnInit {
 
   @Input() producto: Producto;
   @Output() miDetalle = new EventEmitter<Detalle>();
-  detalle:Detalle;
+  detalle: Detalle;
   misProductos: Producto[] = [];
-  cantidad:number = 0;
+  cantidad = 0;
   faPlus = faPlus;
   famenos = faMinus;
-  ban:boolean = true;
-  vacio:boolean = true;
-  constructor(private detalleService : DetalleService) { }
+  ban = true;
+  vacio = true;
+  constructor(private detalleService: DetalleService) { }
 
   ngOnInit(): void {
     this.verificarSeleccionado();
   }
 
-  aumentar(){
-    if(this.cantidad < this.producto.stock){
+  aumentar(): void{
+    if (this.cantidad < this.producto.stock){
       this.cantidad++;
     }else{
       Swal.fire({
@@ -41,44 +41,42 @@ export class ProductosNegocioComponent implements OnInit {
     }
     this.actualizarLista();
   }
-  disminuir(){
-    if(this.cantidad >0){
+  disminuir(): void{
+    if (this.cantidad > 0){
       this.cantidad--;
     }
     this.actualizarLista();
   }
-  añadirLista(){
-      for(let i = 1; i <= this.cantidad; i++){
+  añadirLista(): void{
+      for (let i = 1; i <= this.cantidad; i++){
         this.misProductos.push(this.producto);
     }
-    
   }
-  actualizarLista(){
-    if(this.misProductos.length == 0){
+  actualizarLista(): void{
+    if (this.misProductos.length === 0){
       this.añadirLista();
     }
     else{
-      if(this.misProductos.length < this.cantidad || this.misProductos.length > this.cantidad){
+      if (this.misProductos.length < this.cantidad || this.misProductos.length > this.cantidad){
         this.misProductos = [];
         this.añadirLista();
       }
     }
-    if(this.cantidad == 0){
-      if(this.detalle!=undefined){
+    if (this.cantidad === 0){
+      if (this.detalle !== undefined){
         this.eliminarDetalle();
       }
-      
     }
   }
-  crearDetalle(){
-    if(this.cantidad>0)
+  crearDetalle(): void{
+    if (this.cantidad > 0)
     {
-      if(this.detalle==undefined){
+      if (this.detalle === undefined){
           this.addDetalle();
       }
       else{
         this.detalleService.getListaDetalles().forEach(element => {
-          if(this.detalle.idDetalle == element.idDetalle){
+          if (this.detalle.idDetalle === element.idDetalle){
             element = this.calcularTotal(element);
             Swal.fire({
               position: 'top-end',
@@ -92,7 +90,7 @@ export class ProductosNegocioComponent implements OnInit {
       }
     }
     else{
-      if(this.detalle==undefined){
+      if (this.detalle === undefined){
         Swal.fire({
           position: 'top-end',
           icon: 'error',
@@ -103,7 +101,7 @@ export class ProductosNegocioComponent implements OnInit {
       }
     }
   }
-  addDetalle(){
+  addDetalle(): void{
     this.detalle = new Detalle();
     this.detalle.idDetalle = this.producto.idProducto;
     this.detalle.Producto = this.producto;
@@ -118,23 +116,22 @@ export class ProductosNegocioComponent implements OnInit {
     });
   }
 
-  verificarSeleccionado(){
+  verificarSeleccionado(): void{
     this.detalleService.getListaDetalles().forEach(element => {
-      
-      if(element.Producto.idProducto == this.producto.idProducto){
+      if (element.Producto.idProducto === this.producto.idProducto){
         this.cantidad = element.cantidad;
         this.detalle = element;
       }
     });
   }
 
-  calcularTotal(element: Detalle):Detalle{
+  calcularTotal(element: Detalle): Detalle{
     element.cantidad = this.misProductos.length;
     element.total = this.producto.precio * element.cantidad;
     return element;
   }
 
-  eliminarDetalle(){
+  eliminarDetalle(): void{
     this.detalle = this.calcularTotal(this.detalle);
     this.miDetalle.emit(this.detalle);
     Swal.fire({
