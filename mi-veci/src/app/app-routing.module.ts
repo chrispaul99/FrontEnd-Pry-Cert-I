@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'Administrador', loadChildren: () => import('./components/administrador/administrador.module').then(m => m.AdministradorModule), canActivate: [ AuthGuard ], data:{permittedRoles:["A"]} },
   { path: 'Comerciante', loadChildren: () => import('./components/comerciante/comerciante.module').then(m => m.ComercianteModule) , canActivate: [ AuthGuard ], data:{permittedRoles:["N"]}},
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'Cliente', loadChildren: () => import('./components/cliente/cliente.module').then(m => m.ClienteModule), canActivate: [ AuthGuard ], data:{permittedRoles:["C"]} },
+  { path: 'Cliente', loadChildren: () => import('./components/cliente/cliente.module').then(m => m.ClienteModule), canActivate: [ AuthGuard ], data:{permittedRoles:["C"]} }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

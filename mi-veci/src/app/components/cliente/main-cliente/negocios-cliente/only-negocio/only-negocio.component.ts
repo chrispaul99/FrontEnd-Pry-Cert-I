@@ -17,14 +17,15 @@ import { DetalleService } from '../../../../../services/Detalle/detalle.service'
 export class OnlyNegocioComponent implements OnInit {
 
   negocio: Negocio;
-  productos:Producto[];
+  productos: Producto[];
   faplus = faPlusCircle;
   mapa: mapboxgl.Map;
-  lista:Detalle[];
-  pageActual: number = 1;
-  loading: boolean = true;
-  ubicacion:boolean = false;
-  constructor(private router: Router,private negocioService: NegocioService, private activatedRoute: ActivatedRoute,private productosService: ProductoService,private detalleService: DetalleService) {
+  lista: Detalle[];
+  pageActual = 1;
+  loading = true;
+  ubicacion = false;
+  mostrarTarjetas = true;
+  constructor(private router: Router, private negocioService: NegocioService, private activatedRoute: ActivatedRoute, private productosService: ProductoService, private detalleService: DetalleService) {
     /*this.router.events
 .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
 .subscribe((events: RoutesRecognized[]) => {
@@ -35,7 +36,7 @@ export class OnlyNegocioComponent implements OnInit {
 
   ngOnInit(): void {
     this.lista = this.detalleService.getListaDetalles();
-    console.log("Detalles Iniciales");
+    console.log('Detalles Iniciales');
     console.log(this.lista);
     this.negocio = new Negocio();
     this.activatedRoute.params.subscribe(
@@ -48,11 +49,11 @@ export class OnlyNegocioComponent implements OnInit {
                 result => {
                   this.productos = result;
                 },
-                (error)=>console.log(error),
-                ()=>{
+                (error) => console.log(error),
+                () => {
                   this.loading = false;
-                }    
-              )
+                }
+              );
             },
           );
         }
@@ -60,47 +61,46 @@ export class OnlyNegocioComponent implements OnInit {
     );
   }
   verificarHorario(inicio: string, fin: string): boolean{
-    if(inicio!=undefined && fin!=undefined){
+    if (inicio !== undefined && fin !== undefined){
     let horaActual = new Date();
     let horarioOpen = inicio.split(':');
     let horarioClose = fin.split(':');
     let Open = new Date();
     let Close = new Date();
     // tslint:disable-next-line: radix
-    Open.setHours(parseInt(horarioOpen[0]),parseInt(horarioOpen[1]), parseInt(horarioOpen[2]));
+    Open.setHours(parseInt(horarioOpen[0]), parseInt(horarioOpen[1]), parseInt(horarioOpen[2]));
     // tslint:disable-next-line: radix
-    Close.setHours(parseInt(horarioClose[0]), parseInt(horarioClose[1]),parseInt(horarioClose[2]));
-    if(Open.getTime() > Close.getTime()){
+    Close.setHours(parseInt(horarioClose[0]), parseInt(horarioClose[1]), parseInt(horarioClose[2]));
+    if (Open.getTime() > Close.getTime()){
       // tslint:disable-next-line: radix
-      Close.setHours(parseInt(horarioClose[0]) + 24, parseInt(horarioClose[1]),parseInt(horarioClose[2]));
+      Close.setHours(parseInt(horarioClose[0]) + 24, parseInt(horarioClose[1]), parseInt(horarioClose[2]));
        // tslint:disable-next-line: radix
-      if(parseInt(horarioOpen[0]) > 12){
+      if (parseInt(horarioOpen[0]) > 12){
          // tslint:disable-next-line: radix
         Open.setHours(parseInt(horarioOpen[0]) - 12, parseInt(horarioOpen[1]), parseInt(horarioOpen[2]));
       }
     }
     return this.ControlHorario(Open.getTime(), Close.getTime(), horaActual.getTime());
     }
-    
   }
   ControlHorario(Inicio: number, Fin: number, actual: number): boolean{
-  if(Inicio === Fin){
+  if (Inicio === Fin){
     return true;
   }
-  if( actual < Fin && actual >= Inicio)
+  if ( actual < Fin && actual >= Inicio)
   {
     return true;
   }
   return false;
   }
-  direccion(){
+  direccion(): void{
     let lat = this.negocio.Direccion.latitud;
     let lon = this.negocio.Direccion.longitud;
     mapboxgl.accessToken = environment.mapboxkey;
     this.mapa = new mapboxgl.Map({
     container: 'mapa',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [lon,lat],
+    center: [lon, lat],
     zoom: 15
     });
     const marker = new mapboxgl.Marker({
@@ -115,42 +115,50 @@ export class OnlyNegocioComponent implements OnInit {
   }
   recibirDetalle($event): void {
       let indice = 0;
-      let ban=false;
-      if(this.lista.length == 0){
+      let ban = false;
+      if (this.lista.length === 0){
       this.lista.push($event);
       }
       else{
         this.lista.forEach(element => {
-          if($event.idDetalle == element.idDetalle){
-            if($event.cantidad == 0){
+          if ($event.idDetalle === element.idDetalle){
+            if ($event.cantidad === 0){
               this.lista.splice(indice, 1);
             }
             ban = true;
           }
           indice++;
         });
-        if(!ban){
+        if (!ban){
           this.lista.push($event);
         }
       }
   }
-  enviarListado(){
+  enviarListado(): void{
     this.detalleService.setListaDetalles(this.lista);
-    this.router.navigateByUrl('/Cliente/Main/Pedidos/MiLista/'+this.negocio.idNegocio);
-    
+    this.router.navigateByUrl('/Cliente/Main/Pedidos/MiLista/' + this.negocio.idNegocio);
   }
-  horaApertura(inicio: string):string{
-    if(inicio!=undefined){
+  horaApertura(inicio: string): string{
+    if (inicio !== undefined){
       let Open = inicio.split(':');
       let horarioOpen = Open[0] + ':' + Open[1];
       return horarioOpen;
     }
   }
-  horaCierre(fin: string):string{
-    if(fin!=undefined){
+  horaCierre(fin: string): string{
+    if (fin !== undefined){
       let Close = fin.split(':');
       let horarioClose = Close[0] + ':' + Close[1];
       return horarioClose;
+    }
+  }
+
+  Ocultar($event): void{
+    if ($event) {
+      this.mostrarTarjetas = false;
+    }
+    else{
+      this.mostrarTarjetas = true;
     }
   }
 }

@@ -28,21 +28,27 @@ export class ClienteComponent implements OnInit {
 
   faUser = faUser;
   faEdit = faUserEdit;
-  persona:Persona;
+  persona: Persona;
   public menuItems: any[];
-  constructor(private auth:LoginService,private router:Router) { }
+  constructor(private auth: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
-      this.persona = new Persona();
-      var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-      this.persona.nombres = payLoad.Nombres;
-      this.persona.apellidos = payLoad.Apellidos;
-      this.persona.rol = payLoad.rol;
-      this.persona.correo = payLoad.email;
-      this.responsive();
+    this.persona = new Persona();
+    const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    this.persona.nombres = payLoad.Nombres;
+    this.persona.apellidos = payLoad.Apellidos;
+    this.persona.rol = payLoad.rol;
+    this.persona.correo = payLoad.email;
+    this.responsive();
+    // Toggle Click Function
+    // $('#menu-toggle').click((e) => {
+    //  e.preventDefault();
+    //  $('#wrapper').toggleClass('toggled');
+    // });
   }
-  logout(){
+
+  logout(): void {
     Swal.fire({
       title: 'Cerrar Sesión',
       text: '¿Esta seguro que desea cerrar sesión?',
@@ -55,26 +61,22 @@ export class ClienteComponent implements OnInit {
     }).then((result) => {
         if (result.value) {
           this.auth.logout();
-          this.router.navigate(["/login"]);
+          this.router.navigate(['/login']);
       }
     });
-    
-
   }
-  responsive(){
-    $(document).ready(function(){
 
-	
+  responsive(): void {
+    $(document).ready(() => {
+      let toggle_sidebar = false;
+      let minimize_sidebar = false;
+      let nav_open = 0;
+      let mini_sidebar = 0;
 
-      var toggle_sidebar = false,
-      minimize_sidebar = false,
-      nav_open = 0,
-      mini_sidebar = 0;
-  
-      if(!toggle_sidebar) {
-        var toggle = $('.sidenav-toggler');
-        toggle.on('click', function(){
-          if (nav_open == 1){
+      if (!toggle_sidebar) {
+        const toggle = $('.sidenav-toggler');
+        toggle.on('click', () => {
+          if (nav_open === 1){
             $('.wrapper').removeClass('nav_open');
             toggle.removeClass('toggled');
             nav_open = 0;
@@ -85,19 +87,16 @@ export class ClienteComponent implements OnInit {
           }
         });
         toggle_sidebar = true;
-
       }
-    
-      if(!minimize_sidebar){
-        var minibutton = $('.toggle-sidebar');
-        if($('.wrapper').hasClass('sidebar_minimize')){
+      if (!minimize_sidebar){
+        const minibutton = $('.toggle-sidebar');
+        if ($('.wrapper').hasClass('sidebar_minimize')){
           mini_sidebar = 1;
           minibutton.addClass('toggled');
           minibutton.html('<i class="fa fa-times">');
         }
-    
-        minibutton.on('click', function() {
-          if (mini_sidebar == 1) {
+        minibutton.on('click', () => {
+          if (mini_sidebar === 1) {
             $('.wrapper').removeClass('sidebar_minimize');
             minibutton.removeClass('toggled');
             minibutton.html('<i class="fa fa-bars"></i>');
@@ -112,16 +111,16 @@ export class ClienteComponent implements OnInit {
         });
         minimize_sidebar = true;
       }
-    
-      $('.sidebar').hover(function() {
+      $('.sidebar').hover(() => {
         if ($('.wrapper').hasClass('sidebar_minimize')){
           $('.wrapper').addClass('sidebar_minimize_hover');
         }
-      }, function(){
+      }, () => {
         if ($('.wrapper').hasClass('sidebar_minimize')){
           $('.wrapper').removeClass('sidebar_minimize_hover');
         }
       });
     });
   }
+
 }
