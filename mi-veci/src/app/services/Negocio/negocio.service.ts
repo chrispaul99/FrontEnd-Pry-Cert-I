@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
 import { Negocio } from '../../models/Negocio/negocio';
 
@@ -38,5 +38,9 @@ export class NegocioService {
       return this.http.post<any>(this.url, negocioBody, this.httpOptions);
     }
     return this.http.put<any>(this.url, negocioBody, this.httpOptions);
+  }
+
+  buscarNegocio(criterio: string): Observable<Negocio[]> {
+    return this.http.get<Negocio[]>(this.url + '/Search?criterio=' + criterio, this.httpOptions);
   }
 }

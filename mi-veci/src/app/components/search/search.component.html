@@ -1,6 +1,5 @@
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
+<div class="row d-flex justify-content-center">
+    <div class="col">
         <h4 class="page-title text-center">{{title}}</h4>
         <form class="navbar-left navbar-form nav-search mr-md-3">
             <div class="input-group">
@@ -9,10 +8,20 @@
                     <i class="fa fa-search search-icon"></i>
                 </button>
                 </div>
-                <input type="text" placeholder="Buscar" class="form-control">
+                <input #termino type="text" (keyup)="buscar(termino.value)" placeholder="Buscar" class="form-control">
             </div>
         </form>
     </div>
-    <div class="col-3"></div>
 </div>
 <hr>
+
+<div class="row" *ngIf="mostrarProductos">
+    <div class="col-md-3" *ngFor="let item of productos |paginate: {itemsPerPage: 4, currentPage: pageActual}; index as i">
+        <app-productos-negocio [producto]="item" (miDetalle)="recibirDetalle($event)"></app-productos-negocio>
+    </div>
+</div>
+<div class="row" *ngIf="mostrarNegocios">
+    <div class="col-md-3" *ngFor="let item of negocios |paginate: {itemsPerPage: 4, currentPage: pageActual}; index as i">
+        <app-negocio-card [negocio]="item"></app-negocio-card>
+    </div>
+</div>

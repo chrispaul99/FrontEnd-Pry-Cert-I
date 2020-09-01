@@ -13,7 +13,7 @@
                     <div class="row" data-aos="zoom-in">
 
                         <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" *ngFor="let x of negocios">
-                            <img src="{{x.imagen}}" class="img-fluid" alt="">
+                            <img src="{{x | noImage}}" class="img-fluid" alt="">
                         </div>
                     </div>
 
@@ -22,11 +22,11 @@
             <!-- Fin de Negocios Randomicos -->
             <div class="row" data-aos="fade-up" data-aos-delay="600">
                 <div class="col-lg-4 col-md-6 portfolio-item filter-web" *ngFor="let x of negocios">
-                    <div class="portfolio-img"><img src="{{x.imagen}}" class="img-fluid" alt=""></div>
+                    <div class="portfolio-img"><img src="{{x | noImage}}" class="img-fluid" alt=""></div>
                     <div class="portfolio-info">
                         <h4>{{x.nombre}}</h4>
                         <p>{{x.categoria}}</p>
-                        <a href="{{x.imagen}}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
+                        <a href="{{x | noImage}}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
                         <a routerLink="/login" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100" *ngFor="let x of productos">
                     <div class="icon-box">
-                        <img src="{{x.imagen}}" class="img-fluid" alt="">
+                        <img src="{{x | noImage}}" class="img-fluid" alt="">
                         <p><b><span>{{x.nombre}}</span></b> - <span>{{x.precio}}$</span></p>
                     </div>
                 </div>

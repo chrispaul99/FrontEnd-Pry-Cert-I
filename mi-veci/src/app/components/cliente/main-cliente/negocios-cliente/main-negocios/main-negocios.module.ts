@@ -5,6 +5,7 @@ import { MainNegociosRoutingModule } from './main-negocios-routing.module';
 import { MainNegociosComponent } from './main-negocios.component';
 import { SharedModule } from '../../../../../shared/pipes/shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NegocioCardComponent } from './negocio-card/negocio-card.component';
 
 
 @NgModule({

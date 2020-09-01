@@ -14,7 +14,7 @@
                             <div class="falsoleft" *ngIf="!verificarHorario(negocio.horarioInicial,negocio.horarioFinal)">{{verificarHorario(negocio.horarioInicial,negocio.horarioFinal)|booleanNegocio:"Estado"}}</div>
                         </div>
                         <div class="col-md-6">
-                            <img src="{{negocio.imagen}}" class="img-responsive header-negocio">
+                            <img src="{{ negocio | noImage }}" class="img-responsive header-negocio">
                         </div>
                     </div>
                     <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
@@ -70,7 +70,7 @@
     </div><br>
     <div class="loading" *ngIf="loading"></div>
     <div *ngIf="!loading">
-        <app-search title="Listado de Productos"></app-search>
+        <app-search title="Listado de Productos" [idNegocio]="negocio.idNegocio" (mostrar)="Ocultar($event)"></app-search>
         <br><br>
         <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
@@ -80,12 +80,10 @@
                 </span>
                 Ver Mi Lista
             </button>
-
             </div>
             <br><br><br>
-
         </div>
-        <div class="row">
+        <div class="row" *ngIf="mostrarTarjetas">
             <div class="col-md-3" *ngFor="let item of productos |paginate: {itemsPerPage: 4, currentPage: pageActual}; index as i">
                 <app-productos-negocio [producto]="item" (miDetalle)="recibirDetalle($event)"></app-productos-negocio>
             </div>

@@ -2,18 +2,38 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { SearchComponent } from '../../../components/search/search.component';
+import { ProductosNegocioComponent } from '../../../components/cliente/main-cliente/negocios-cliente/only-negocio/productos-negocio/productos-negocio.component';
+import { NegocioCardComponent } from '../../../components/cliente/main-cliente/negocios-cliente/main-negocios/negocio-card/negocio-card.component';
 import { BooleanNegocioPipe } from '../boolean-negocio.pipe';
+import { NoImagePipe } from '../no-image.pipe';
 import { ListadoClienteComponent } from '../../../components/cliente/main-cliente/pedidos-cliente/listado-cliente/listado-cliente.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
-  declarations: [FooterComponent, SearchComponent,ListadoClienteComponent, BooleanNegocioPipe],
+  declarations: [
+    FooterComponent,
+    SearchComponent,
+    ListadoClienteComponent,
+    ProductosNegocioComponent,
+    NegocioCardComponent,
+    BooleanNegocioPipe,
+    NoImagePipe
+  ],
   imports: [
     CommonModule,
+    FontAwesomeModule,
     NgxPaginationModule
   ],
-  exports:[FooterComponent, SearchComponent,ListadoClienteComponent, BooleanNegocioPipe]
+  exports: [
+    FooterComponent,
+    SearchComponent,
+    ListadoClienteComponent,
+    ProductosNegocioComponent,
+    NegocioCardComponent,
+    BooleanNegocioPipe,
+    NoImagePipe
+  ]
 })
 export class SharedModule { }

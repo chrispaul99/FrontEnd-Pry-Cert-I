@@ -31,9 +31,9 @@ export class ProductoService {
   lista(): Observable<Producto[]>{
     return this.http.get<Producto[]>(this.url , this.httpOptions).pipe(retry(1));
   }
-  // Ya no se usa
-  buscarProducto(id: number): Observable<Producto> {
-    return this.http.post<Producto>(this.url + '/Search/?id=' + id, this.httpOptions);
+
+  buscarProducto(id: number, criterio: string): Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.url + '/Search?id=' + id + '&&criterio=' + criterio, this.httpOptions);
   }
   getId(): number{
     return this.id;
