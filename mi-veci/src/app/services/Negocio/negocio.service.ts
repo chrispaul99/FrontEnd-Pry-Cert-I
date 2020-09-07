@@ -35,4 +35,7 @@ export class NegocioService {
   buscarNegocio(criterio: string): Observable<Negocio[]> {
     return this.http.get<Negocio[]>(this.url + '/Search?criterio=' + criterio, environment.httpOptions);
   }
+  listarNegociosComerciante(id:number): Observable<Negocio[]> {
+    return this.http.get<Negocio[]>(this.url + '/MisNegocios?id=' + id, environment.httpOptions);
+  }
 }

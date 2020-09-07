@@ -11,7 +11,7 @@ export class MisPedidosClienteComponent implements OnInit {
 
   misPedidos: Pedido[];
   pedidoSeleccionado: Pedido;
-  constructor(private pedidosService: PedidoService) { }
+  constructor(private pedidosService: PedidoService,) { }
 
   ngOnInit(): void {
     const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
