@@ -22,6 +22,7 @@ export class PersonaService {
     })
   };
   constructor(private http: HttpClient) { }
+
   create(p: Persona): Observable<Persona> {
     const personaBody = JSON.stringify(p);
     if (p.idPersona === undefined){
@@ -29,6 +30,7 @@ export class PersonaService {
     }
     return this.http.put<any>(this.url, personaBody, this.httpOptions);
   }
+
   retrieve(id: number): Observable<Persona> {
     return this.http.get<Persona>(this.url + '/' + id, this.httpOptions)
       .pipe(retry(1));

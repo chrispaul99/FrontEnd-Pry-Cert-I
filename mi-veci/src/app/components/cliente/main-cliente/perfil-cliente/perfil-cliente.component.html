@@ -1,1 +1,98 @@
-<p>perfil-cliente works!</p>
+<div class="row">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Editar Perfil</h5>
+                </div>
+                <div class="card-body">
+                    <div class="image">
+                        <img class="card-img-top" src="../../../../../assets/img/cliente/img/Work-Harder.jpg" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <div class="author">
+                            <img class="avatar" src="../../../../../assets/img/cliente/img/profile.jpg" alt="...">
+                            <h5 class="card-title text-info">{{ persona.nombres }} {{ persona.apellidos }}</h5>
+                        </div>
+                    </div>
+                    <form [formGroup]="form">
+                        <div class="row">
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <label>Cédula</label>
+                                    <input formControlName="cedula" disabled="" type="text" [(ngModel)]="persona.cedula" class="form-control" placeholder="Cédula" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Celular</label>
+                                    <input formControlName="celular" type="tel" [(ngModel)]="persona.celular" [ngClass]="{'is-invalid': submitted && f.celular.errors}" class="form-control" placeholder="Celular" />
+                                    <div *ngIf="submitted && f.celular.errors">
+                                        <div *ngIf="f.celular.errors.required">El celular es requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Correo electrónico</label>
+                                    <input formControlName="correo" disabled="" type="email" [(ngModel)]="persona.correo" class="form-control" placeholder="Correo" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nombres</label>
+                                    <input formControlName="nombres" type="text" [(ngModel)]="persona.nombres" [ngClass]="{'is-invalid': submitted && f.nombres.errors}" class="form-control" placeholder="Nombres" />
+                                    <div *ngIf="submitted && f.nombres.errors">
+                                        <div *ngIf="f.nombres.errors.required">Los nombres son requeridos</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Apellidos</label>
+                                    <input formControlName="apellidos" type="text" [(ngModel)]="persona.apellidos" [ngClass]="{'is-invalid': submitted && f.apellidos.errors}" class="form-control" placeholder="Apellidos" />
+                                    <div *ngIf="submitted && f.apellidos.errors">
+                                        <div *ngIf="f.apellidos.errors.required">Los apellidos son requeridos</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="card-header">
+                        Dirección
+                    </div>
+                    <div class="card-body d-flex justify-content-between">
+                        <div class="form-group">
+                            <form [formGroup]="form">
+                                <div class="form-group">
+                                    <label>Ciudad</label>
+                                    <input formControlName="ciudad" type="text" [(ngModel)]="direccion.ciudad" [ngClass]="{'is-invalid': submitted && f.ciudad.errors}" class="form-control" placeholder="Ciudad" />
+                                    <div *ngIf="submitted && f.ciudad.errors">
+                                        <div *ngIf="f.ciudad.errors.required">La ciudad es requerida</div>
+                                    </div>
+                                    <label>Referencia</label>
+                                    <input formControlName="referencia" type="text" [(ngModel)]="direccion.referencia" [ngClass]="{'is-invalid': submitted && f.referencia.errors}" class="form-control" placeholder="Referencia" />
+                                    <div *ngIf="submitted && f.referencia.errors">
+                                        <div *ngIf="f.referencia.errors.required">La referencia es requerida</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="mapa"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="ml-auto mr-auto">
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                <button type="submit" class="btn btn-primary btn-round">Actualizar Perfil</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
