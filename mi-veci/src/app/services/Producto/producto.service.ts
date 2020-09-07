@@ -4,6 +4,7 @@ import {Observable, forkJoin } from 'rxjs';
 import { retry } from 'rxjs/operators';
 import { Producto } from '../../models/Producto/producto';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,29 +12,22 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class ProductoService {
 
   private id: number;
-  url = 'https://localhost:44375/api/Productos';
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
-    })
-  };
+  url = environment.url+"/Productos";
 
   constructor(private http: HttpClient) {
   }
 
   // .get debe llamar al GET del backend donde se hacer el filtrado
   listarProductos(id: number): Observable<Producto[]>{
-    return this.http.get<Producto[]>(this.url + '/' + id, this.httpOptions).pipe(retry(1));
+    return this.http.get<Producto[]>(this.url + '/' + id, environment.httpOptions).pipe(retry(1));
   }
 
   lista(): Observable<Producto[]>{
-    return this.http.get<Producto[]>(this.url , this.httpOptions).pipe(retry(1));
+    return this.http.get<Producto[]>(this.url , environment.httpOptions).pipe(retry(1));
   }
 
   buscarProducto(id: number, criterio: string): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.url + '/Search?id=' + id + '&&criterio=' + criterio, this.httpOptions);
+    return this.http.get<Producto[]>(this.url + '/Search?id=' + id + '&&criterio=' + criterio, environment.httpOptions);
   }
   getId(): number{
     return this.id;

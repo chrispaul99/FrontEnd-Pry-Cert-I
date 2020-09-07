@@ -3,21 +3,14 @@ import {Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Lista } from '../../models/Lista/lista';
 import { retry } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListaService {
 
-  url = 'https://localhost:44375/api/Listas';
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
-    })
-  };
-
+  url = environment.url+"/Listas";
   private rutaAnt: string;
   private totalPago: number;
   private idLista: number;
@@ -27,13 +20,13 @@ export class ListaService {
   create(l: Lista): Observable<any> {
     const listaBody = JSON.stringify(l);
     if (l.idLista === undefined) {
-      return this.http.post<any>(this.url, listaBody, this.httpOptions);
+      return this.http.post<any>(this.url, listaBody, environment.httpOptions);
     }
     // return this.http.put<any>(this.url, alumnoBody, this.httpOptions);
   }
 
   recuperarTotal(id: number): Observable<Lista> {
-    return this.http.get<Lista>(this.url + '/' + id, this.httpOptions).pipe(
+    return this.http.get<Lista>(this.url + '/' + id, environment.httpOptions).pipe(
       retry(1)
     );
   }
