@@ -4,18 +4,13 @@ import { Login } from '../../models/Persona/persona';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  url = 'https://localhost:44375/api/Login/Authenticate';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
-    })
-  };
+  url = environment.url+"/Login/Authenticate";
   userToken: string;
   constructor(private http: HttpClient,private router:Router) { 
     this.leerToken();
@@ -27,7 +22,7 @@ export class LoginService {
       returnSecureToken: true
     };
     //const personaBody = JSON.stringify(p);
-    return this.http.post<any>(this.url, authData, this.httpOptions).pipe(
+    return this.http.post<any>(this.url, authData, environment.httpOptions).pipe(
       map( resp => {
         this.guardarToken( resp.token );
         console.log(resp);

@@ -3,30 +3,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
 import { Negocio } from '../../models/Negocio/negocio';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NegocioService {
 
-  url = 'https://localhost:44375/api/Negocios';
-  private nombreNegocio: string;
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
-    })
-  };
+  url = environment.url+"/Negocios";
 
   constructor(private http: HttpClient) { }
 
   listarNegocios(): Observable<Negocio[]>{
-    return this.http.get<Negocio[]>(this.url, this.httpOptions).pipe(retry(1));
+    return this.http.get<Negocio[]>(this.url, environment.httpOptions).pipe(retry(1));
   }
 
   retrieve(id: number): Observable<Negocio> {
-    return this.http.get<Negocio>(this.url + '/' + id, this.httpOptions)
+    return this.http.get<Negocio>(this.url + '/' + id, environment.httpOptions)
       .pipe(
         retry(1)
       );
@@ -34,12 +27,12 @@ export class NegocioService {
   save(n: Negocio): Observable<any> {
     const negocioBody = JSON.stringify(n);
     if (n.idNegocio === undefined) {
-      return this.http.post<any>(this.url, negocioBody, this.httpOptions);
+      return this.http.post<any>(this.url, negocioBody, environment.httpOptions);
     }
-    return this.http.put<any>(this.url, negocioBody, this.httpOptions);
+    return this.http.put<any>(this.url, negocioBody, environment.httpOptions);
   }
 
   buscarNegocio(criterio: string): Observable<Negocio[]> {
-    return this.http.get<Negocio[]>(this.url + '/Search?criterio=' + criterio, this.httpOptions);
+    return this.http.get<Negocio[]>(this.url + '/Search?criterio=' + criterio, environment.httpOptions);
   }
 }
