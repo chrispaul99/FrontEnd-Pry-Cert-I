@@ -11,7 +11,8 @@ export const environment = {
       Accept: 'application/json'
     })
   },
-  url:"http://miveci20-001-site1.ctempurl.com/api",
+  //url:"http://miveci20-001-site1.ctempurl.com/api",
+  url:"https://localhost:44375/api",
   production: false,
   mapboxkey : 'pk.eyJ1IjoiY2hyaXNlZG03IiwiYSI6ImNrZWRldWhobDA5bWoydWxnYXlteTd3bWYifQ.hOrG0QMgn1IUYdhb2hWvwg'
 };

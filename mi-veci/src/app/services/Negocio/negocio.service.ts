@@ -32,10 +32,13 @@ export class NegocioService {
     return this.http.put<any>(this.url, negocioBody, environment.httpOptions);
   }
 
-  buscarNegocio(criterio: string): Observable<Negocio[]> {
-    return this.http.get<Negocio[]>(this.url + '/Search?criterio=' + criterio, environment.httpOptions);
+  buscarNegocio(criterio: string,id:number): Observable<Negocio[]> {
+    return this.http.get<Negocio[]>(this.url + '/Search?criterio=' + criterio+'&id='+id, environment.httpOptions);
   }
   listarNegociosComerciante(id:number): Observable<Negocio[]> {
     return this.http.get<Negocio[]>(this.url + '/MisNegocios?id=' + id, environment.httpOptions);
+  }
+  delete(id:number): Observable<any> {
+    return this.http.delete<any>(this.url+'/'+id, environment.httpOptions);
   }
 }

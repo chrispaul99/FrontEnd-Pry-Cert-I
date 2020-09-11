@@ -28,11 +28,15 @@ export class ProductoService {
   buscarProducto(id: number, criterio: string): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.url + '/Search?id=' + id + '&&criterio=' + criterio, environment.httpOptions);
   }
-  getId(): number{
-    return this.id;
-  }
 
-  setId(idActual: number): void{
-    this.id = idActual;
+  delete(id:number): Observable<any> {
+    return this.http.delete<any>(this.url+'/'+id, environment.httpOptions);
+  }
+  save(p: Producto): Observable<any> {
+    const productoBody = JSON.stringify(p);
+    if (p.idProducto === undefined) {
+      return this.http.post<any>(this.url, productoBody, environment.httpOptions);
+    }
+    return this.http.put<any>(this.url, productoBody, environment.httpOptions);
   }
 }

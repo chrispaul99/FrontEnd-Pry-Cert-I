@@ -237,7 +237,6 @@ export class ListaClienteComponent implements OnInit {
   }
 
   EnviarPedidos(){
-    for (let i = 0; i < 100; i++) {
       this.pedidoService.create(this.pedidoFinal).subscribe(result=>{
         Swal.fire({
           position: 'top-end',
@@ -248,12 +247,10 @@ export class ListaClienteComponent implements OnInit {
         });
     },(error)=>console.log(error),
     ()=>{
-      //this.router.navigate(['/Cliente/Main/Pedidos']);
-      //this.pedidoFinal = undefined;
-      //this.detalleService.setListaDetalles([]);
-      //console.log(this.detalleService.getListaDetalles());
+      this.router.navigate(['/Cliente/Main/Pedidos']);
+      this.pedidoFinal = undefined;
+      this.detalleService.setListaDetalles([]);
+      console.log(this.detalleService.getListaDetalles());
     } );
-    }
-    
   }
 }

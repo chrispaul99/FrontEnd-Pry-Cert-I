@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainClienteComponent } from './main-cliente.component';
+import { PrincipalClienteComponent } from './principal-cliente/principal-cliente.component';
 
 const routes: Routes = [
   { path: '', component: MainClienteComponent , children:
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'Negocios', loadChildren: () => import('./negocios-cliente/negocios-cliente.module').then(m => m.NegociosClienteModule) },
   { path: 'Pedidos', loadChildren: () => import('./pedidos-cliente/pedidos-cliente.module').then(m => m.PedidosClienteModule) },
   // tslint:disable-next-line: max-line-length
-  { path: 'Inicio', loadChildren: () => import('./principal-cliente/principal-cliente.module').then(m => m.PrincipalClienteModule) },
+  { path: 'Inicio', component:PrincipalClienteComponent},
   {path: '', redirectTo: 'Inicio', pathMatch: 'full' }
 ]}
 ];

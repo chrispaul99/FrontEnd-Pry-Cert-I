@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ClienteComponent } from './cliente.component';
-import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [{ path: '', component: ClienteComponent, children: [
   { path: 'Main', loadChildren: () => import('./main-cliente/main-cliente.module').then(m => m.MainClienteModule) },

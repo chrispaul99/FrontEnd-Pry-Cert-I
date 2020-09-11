@@ -9,8 +9,8 @@ export class Negocio {
     imagen: string;
     horarioInicial: string;
     horarioFinal: string;
-    delivery: boolean;
-    reserva: boolean;
+    delivery: boolean = false;
+    reserva: boolean = true;
     idDireccion: number;
     idComerciante: number;
     Comerciante: Comerciante = new Comerciante();

@@ -1,0 +1,205 @@
+<div class="modal-body" *ngIf="title=='Añadir Negocio' || title=='Actualizar Negocio'">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-datos-tab" data-toggle="tab" href="#nav-datos" role="tab" aria-controls="nav-home" aria-selected="true"><b>Datos del Negocio</b></a>
+            <a class="nav-item nav-link" id="nav-ubicacion-tab" data-toggle="tab" href="#nav-ubicacion" role="tab" aria-controls="nav-profile" aria-selected="false"><b>Ubicación</b></a>
+            <a class="nav-item nav-link " id="nav-imagen-tab" data-toggle="tab" href="#nav-imagen" role="tab" aria-controls="nav-home" aria-selected="true"><b>Imagen</b></a>
+        </div>
+    </nav>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="user" enctype="multipart/form-data">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-datos" role="tabpanel" aria-labelledby="nav-datos-tab">
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <input formControlName="nombre" type="text" class="form-control form-control-user" placeholder="Nombre del Negocio" [(ngModel)]="negocio.nombre" [ngClass]="{'is-invalid': submitted && f.nombre.errors}" />
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.nombre.errors.minlength">La cédula debe tener mínimo 10 caracteres</div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <input formControlName="categoria" type="text" class="form-control form-control-user" placeholder="Categoría" [(ngModel)]="negocio.categoria" [ngClass]="{'is-invalid': submitted && f.categoria.errors}" />
+                        <div *ngIf="submitted && f.categoria.errors" class="invalid-feedback">
+                            <div *ngIf="f.categoria.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.categoria.errors.minlength">La cédula debe tener mínimo 10 caracteres</div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <textarea formControlName="descripcion" type="text" class="form-control form-control-user" placeholder="Descripción" [(ngModel)]="negocio.descripcion" [ngClass]="{'is-invalid': submitted && f.descripcion.errors}"></textarea>
+                        <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+                            <div *ngIf="f.descripcion.errors.required">La cédula es requerida</div>
+                        </div>
+                    </div>
+
+                    <label>Horario de Apertura</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <input formControlName="horarioInicial" type="time" class="form-control form-control-user" [(ngModel)]="negocio.horarioInicial" [ngClass]="{'is-invalid': submitted && f.horarioInicial.errors}" />
+                        <div *ngIf="submitted && f.horarioInicial.errors" class="invalid-feedback">
+                            <div *ngIf="f.horarioInicial.errors.required">La cédula es requerida</div>
+                        </div>
+                    </div>
+                    <label>Horario de Cierre</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <input formControlName="horarioFinal" type="time" class="form-control form-control-user" [(ngModel)]="negocio.horarioFinal" [ngClass]="{'is-invalid': submitted && f.horarioFinal.errors}" />
+                        <div *ngIf="submitted && f.horarioFinal.errors" class="invalid-feedback">
+                            <div *ngIf="f.horarioFinal.errors.required">La cédula es requerida</div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-xs-offset-1 col-xs-6 col-sm-offset-1 col-sm-6'>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Delivery:</span>
+                                    </div>
+                                    <input formControlName="delivery" type="checkbox" class="form-control form-control-user" [(ngModel)]="negocio.delivery" [ngClass]="{'is-invalid': submitted && f.delivery.errors}">
+                                    <div *ngIf="submitted && f.delivery.errors" class="invalid-feedback">
+                                        <div *ngIf="f.delivery.errors.required">La cédula es requerida</div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Reserva: </span>
+                                    </div>
+                                    <input formControlName="reserva" type="checkbox" class="form-control form-control-user" [(ngModel)]="negocio.reserva" [ngClass]="{'is-invalid': submitted && f.reserva.errors}">
+                                    <div *ngIf="submitted && f.reserva.errors" class="invalid-feedback">
+                                        <div *ngIf="f.reserva.errors.required">La cédula es requerida</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-xs-offset-1 col-xs-6 col-sm-offset-1 col-sm-6'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-ubicacion" role="tabpanel" aria-labelledby="nav-ubicacion-tab">
+                <div class='row'>
+                    <div class='col-xs-offset-1 col-xs-6 col-sm-offset-1 col-sm-6'>
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"></span>
+                                </div>
+                                <input formControlName="ciudad" id="ciudad" type="text" class="form-control form-control-user" [(ngModel)]="negocio.Direccion.ciudad" ngModelChange="negocio.Direccion.ciudad = $event" [ngClass]="{'is-invalid': submitted && f.ciudad.errors}" placeholder="Ciudad"
+                                />
+                                <div *ngIf="submitted && f.ciudad.errors" class="invalid-feedback">
+                                    <div *ngIf="f.ciudad.errors.required">La cédula es requerida</div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"></span>
+                                </div>
+                                <input formControlName="referencia" id="referencia" type="text" class="form-control form-control-user" [(ngModel)]="negocio.Direccion.referencia" [ngClass]="{'is-invalid': submitted && f.referencia.errors}" placeholder="Referencia" />
+                                <div *ngIf="submitted && f.referencia.errors" class="invalid-feedback">
+                                    <div *ngIf="f.referencia.errors.required">La cédula es requerida</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-xs-offset-1 col-xs-6 col-sm-offset-1 col-sm-6'>
+                        <div id="mapa">
+                            <button class="btn btn-primary btn-round  ubicacion" *ngIf="!ubicacion " (click)="direccion()">
+                                    <i class="fa fa-globe-americas"></i>
+                                    Ver Ubicacion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-imagen" role="tabpanel" aria-labelledby="nav-imagen-tab">
+                <app-upload-file (imagen)="recibirImagen($event)" [previewPath]="negocio.imagen"></app-upload-file>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</div>
+<div class="modal-body" *ngIf="title=='Añadir Producto' || title=='Actualizar Producto'">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-datos-tab" data-toggle="tab" href="#nav-datos" role="tab" aria-controls="nav-home" aria-selected="true"><b>Datos del Producto</b></a>
+            <a class="nav-item nav-link " id="nav-imagen-tab" data-toggle="tab" href="#nav-imagen" role="tab" aria-controls="nav-home" aria-selected="true"><b>Imagen</b></a>
+        </div>
+    </nav>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="user" enctype="multipart/form-data">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-datos" role="tabpanel" aria-labelledby="nav-datos-tab">
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <input formControlName="nombre" type="text" class="form-control form-control-user" placeholder="Nombre del Producto" [(ngModel)]="producto.nombre" [ngClass]="{'is-invalid': submitted && f.nombre.errors}" />
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.nombre.errors.minlength">La cédula debe tener mínimo 10 caracteres</div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <input formControlName="categoria" type="text" class="form-control form-control-user" placeholder="Categoría" [(ngModel)]="producto.categoria" [ngClass]="{'is-invalid': submitted && f.categoria.errors}" />
+                        <div *ngIf="submitted && f.categoria.errors" class="invalid-feedback">
+                            <div *ngIf="f.categoria.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.categoria.errors.minlength">La cédula debe tener mínimo 10 caracteres</div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <input formControlName="stock" type="number" class="form-control form-control-user" placeholder="Stock" [(ngModel)]="producto.stock" [ngClass]="{'is-invalid': submitted && f.stock.errors}" />
+                        <div *ngIf="submitted && f.stock.errors" class="invalid-feedback">
+                            <div *ngIf="f.stock.errors.required">La cédula es requerida</div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <input formControlName="precio" type="number |number:'1.2'" class="form-control form-control-user" placeholder="Precio" [(ngModel)]="producto.precio" [ngClass]="{'is-invalid': submitted && f.precio.errors}" />
+                        <div *ngIf="submitted && f.precio.errors" class="invalid-feedback">
+                            <div *ngIf="f.precio.errors.required">La cédula es requerida</div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"></span>
+                        </div>
+                        <textarea formControlName="descripcion" type="text" class="form-control form-control-user" placeholder="Descripción" [(ngModel)]="producto.descripcion" [ngClass]="{'is-invalid': submitted && f.descripcion.errors}"></textarea>
+                        <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+                            <div *ngIf="f.descripcion.errors.required">La cédula es requerida</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-imagen" role="tabpanel" aria-labelledby="nav-imagen-tab">
+                <app-upload-file (imagen)="recibirImagen($event)"></app-upload-file>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</div>

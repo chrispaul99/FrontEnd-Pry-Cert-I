@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/models/Pedido/pedido';
 import { PedidoService } from '../../../../../services/Pedido/pedido.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mis-pedidos-cliente',
@@ -14,9 +15,16 @@ export class MisPedidosClienteComponent implements OnInit {
   constructor(private pedidosService: PedidoService,) { }
 
   ngOnInit(): void {
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'info',
+      text: 'Espere por favor...'
+    });
+    Swal.showLoading();
     const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    this.pedidosService.filtrar(payLoad.nameid).subscribe(
+    this.pedidosService.filtrar(payLoad.nameid,payLoad.rol).subscribe(
       result => {
+        Swal.close();
         this.misPedidos = result;
       }
     );

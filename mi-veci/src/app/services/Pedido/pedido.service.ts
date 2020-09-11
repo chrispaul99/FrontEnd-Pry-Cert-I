@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Pedido } from '../../models/Pedido/pedido';
 import { retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -20,10 +20,10 @@ export class PedidoService {
     if (p.idPedido === undefined) {
       return this.http.post<any>(this.url, pedidoBody, environment.httpOptions);
     }
-    // return this.http.put<any>(this.url, alumnoBody, this.httpOptions);
+    return this.http.put<any>(this.url, pedidoBody, environment.httpOptions);
   }
 
-  filtrar(id: number): Observable<Pedido[]> {
-    return this.http.get<Pedido[]>(this.url + '/MyOrders/?id=' + id, environment.httpOptions).pipe(retry(1));
+  filtrar(id: number,rol:string): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(this.url + '/MyOrders/?id=' + id+'&&rol='+rol, environment.httpOptions).pipe(retry(1));
   }
 }

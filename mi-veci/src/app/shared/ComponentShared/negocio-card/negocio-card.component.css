@@ -1,0 +1,112 @@
+@import '../../../../assets/css/cliente/css/atlantis.css';
+@import '../../../../assets/css/cliente/css/demo.css';
+.verdadero {
+    background-color: #89C632;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.falso {
+    background-color: #F55A4B;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.horario {
+    background-color: #F9E552;
+    color: black;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.producto {
+    border-radius: 20px;
+}
+
+.circle-falso {
+    background-color: white;
+    height: 25px;
+    width: 25px;
+    color: #F55A4B;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.circle-verdadero {
+    background-color: white;
+    height: 25px;
+    width: 25px;
+    color: #89C632;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.header-negocio {
+    background-size: cover;
+    height: 150px;
+    border-radius: 50px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.btn-producto {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.loading {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    margin-top: 20%;
+    margin-left: 47%;
+}
+
+.loading:before {
+    content: "";
+    position: fixed;
+    border: 6px solid #73c5eb;
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: animate-loading 1s linear infinite;
+    animation: animate-loading 1s linear infinite;
+}
+
+@-webkit-keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

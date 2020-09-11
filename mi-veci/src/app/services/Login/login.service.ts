@@ -53,7 +53,7 @@ export class LoginService {
     localStorage.setItem('token', idToken);
 
     let hoy = new Date();
-    hoy.setSeconds( 600 );
+    hoy.setSeconds( 6000 );
 
     localStorage.setItem('expira', hoy.getTime().toString() );
 

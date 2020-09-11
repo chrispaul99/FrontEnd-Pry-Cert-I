@@ -18,7 +18,7 @@ const ngWizardConfig: NgWizardConfig = {
 };
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [RegisterComponent, NavbarRegisterComponent, PersonalRegisterComponent, UbicacionRegisterComponent, CredentialRegisterComponent, ConfirmacionRegisterComponent, RolPipe],
+  declarations: [RegisterComponent, NavbarRegisterComponent, PersonalRegisterComponent, UbicacionRegisterComponent, CredentialRegisterComponent, ConfirmacionRegisterComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
