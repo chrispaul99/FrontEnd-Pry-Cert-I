@@ -120,6 +120,7 @@ export class MisPedidosClienteComponent implements OnInit {
           ],
         }]
       );
+      i++;
     });
     return {
       table: {

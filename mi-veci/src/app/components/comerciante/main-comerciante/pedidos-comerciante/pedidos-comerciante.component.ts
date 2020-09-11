@@ -226,6 +226,7 @@ export class PedidosComercianteComponent implements OnInit {
             ],
           }]
         );
+        i++;
       });
       return {
         table: {

@@ -78,8 +78,6 @@ marcador(){
         console.log('CLICK' + lon + ' / ' + lat);
         this.ubicacion.Direccion.latitud = lat;
         this.ubicacion.Direccion.longitud = lon;
-        this.ubicacion.Direccion.nombre = 'Dirección: ' + this.ubicacion.nombres + ' ' + this.ubicacion.apellidos;
-        console.log(this.ubicacion.Direccion.nombre);
     }
     });
     /*

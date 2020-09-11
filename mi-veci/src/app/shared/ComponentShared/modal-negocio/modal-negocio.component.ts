@@ -94,7 +94,6 @@ marcador(long:string,lati:string){
           console.log('CLICK' + lon + ' / ' + lat);
           this.negocio.Direccion.latitud = lat;
           this.negocio.Direccion.longitud = lon;
-          this.negocio.Direccion.nombre = 'Dirección: ' + this.negocio.nombre;
       }
       });
     }else{

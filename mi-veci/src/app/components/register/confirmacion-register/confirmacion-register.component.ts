@@ -7,6 +7,7 @@ import { PersonaService } from 'src/app/services/Persona/persona.service';
 import { DireccionService } from 'src/app/services/Direccion/direccion.service';
 import { Router } from '@angular/router';
 import { EncryptService } from '../../../services/Encrypt/encrypt.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-confirmacion-register',
   templateUrl: './confirmacion-register.component.html',
@@ -93,6 +94,13 @@ export class ConfirmacionRegisterComponent implements OnInit {
           }
         );
         setTimeout(() => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: "Persona registrada correctamente",
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.router.navigate(['/login']);
         }, 2000);
       }
