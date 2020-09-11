@@ -1,0 +1,48 @@
+<div class="panel-header bg-white-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-black pb-2 fw-bold">Menú Principal</h2>
+                <h5 class="text-black op-7 mb-2"><b>Bienvenido a MI VECI</b></h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><b>Productos con Stock menor a 10</b></div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <app-grafica-horizontal [single]="TopProductos"></app-grafica-horizontal>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title fw-mediumbold"><b>Pedidos Recibidos</b></div>
+                <div class="card-list">
+                    <div class="item-list" *ngFor="let item of top5Pedidos">
+                        <div class="avatar ">
+                            <img src="{{item.Lista.Detalle[0].Producto.Negocio.imagen | noImage}}" class="avatar-title rounded-circle border border-white ">
+                        </div>
+                        <div class="flex-1 ml-3 pt-1 ">
+                            <h6 class="text-uppercase fw-bold mb-1 ">{{item.Lista.Detalle[0].Producto.Negocio.nombre}}</h6>
+                            <h5 text-uppercase fw-bold mb-1><b>Fecha:</b> {{item.fecha | date:'medium'}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Estado:</b> {{item.estado | estadoPedido}}</h5>
+                        </div>
+                        <div class="float-right pt-1 ">
+                            <span class="text-uppercase text-info fw-bold mb-4">{{item.Lista.totalPagar |number:'1.2'}} $</span>&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <div class="separator-dashed "></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

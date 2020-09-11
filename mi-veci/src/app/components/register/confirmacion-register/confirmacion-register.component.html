@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="text-center">
+        <fa-icon class="fa-4x" [icon]="faUser"></fa-icon>
+        <h4>{{title}}</h4>
+    </div>
+    <hr>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="user">
+    <div class="card-body">
+        <div class='row'>
+            <div class='col-xs-offset-1 col-xs-4 col-sm-offset-1 col-sm-4'>
+                <b><label igxLabel for="modalidad">Nombres</label></b>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='faUser'></fa-icon></span>
+                    </div>
+                    <input formControlName="nombres" type="text" value="{{personal.nombres}}" class="form-control form-control-user" [(ngModel)]="personal.nombres" [ngClass]="{'is-invalid':  f.nombres.errors && f.nombres.invalid && f.nombres.touched}" placeholder="Nombres"
+                    />
+                </div>
+                <b><label igxLabel for="modalidad">Apellidos</label></b>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='faUser'></fa-icon></span>
+                    </div>
+                    <input formControlName="apellidos" type="text" value="{{personal.apellidos}}" class="form-control form-control-user" [(ngModel)]="personal.apellidos" [ngClass]="{'is-invalid':  f.apellidos.errors && f.apellidos.invalid && f.apellidos.touched}" placeholder="Apellidos"
+                    />
+                </div>
+                <b><label igxLabel for="modalidad">Cédula</label></b>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='faIdCard'></fa-icon></span>
+                    </div>
+                    <input formControlName="cedula" type="text" value="{{personal.cedula}}" class="form-control form-control-user" [(ngModel)]="personal.cedula" [ngClass]="{'is-invalid':  f.cedula.errors && f.cedula.invalid && f.cedula.touched}" placeholder="Cédula" />
+                </div>
+                <b><label igxLabel for="modalidad">Teléfono</label></b>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='famobile'></fa-icon></span>
+                    </div>
+                    <input formControlName="celular" type="text" value="{{personal.celular}}" class="form-control form-control-user" [(ngModel)]="personal.celular" [ngClass]="{'is-invalid':  f.celular.errors && f.celular.invalid && f.celular.touched}" placeholder="Teléfono"
+                    />
+                </div>
+                <b><label igxLabel for="modalidad">Tipo de Usuario</label></b>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='farol'></fa-icon></span>
+                        <span class="input-group-text">{{personal.rol | rol}}</span>
+                    </div>
+                    <input formControlName="rol" type="text" hidden value="{{personal.rol}}" class="form-control form-control-user" [(ngModel)]="personal.rol" [ngClass]="{'is-invalid':  f.rol.errors && f.rol.invalid && f.rol.touched}" placeholder="Teléfono" />
+                </div>
+            </div>
+            <div class='col-xs-offset-1 col-xs-4 col-sm-offset-1 col-sm-4'>
+                <b><label igxLabel for="modalidad">Ciudad</label></b>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='faCiudad'></fa-icon></span>
+                    </div>
+                    <input formControlName="ciudad" type="text" value="{{personal.Direccion.ciudad}}" class="form-control form-control-user" [(ngModel)]="personal.Direccion.ciudad" [ngClass]="{'is-invalid':  f.ciudad.errors && f.ciudad.invalid && f.ciudad.touched}" placeholder="Ciudad"
+                    />
+                </div>
+                <b><label igxLabel for="modalidad">Referencia</label></b>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='fareferencia'></fa-icon></span>
+                    </div>
+                    <input formControlName="referencia" type="text" value="{{personal.Direccion.referencia}}" class="form-control form-control-user" [(ngModel)]="personal.Direccion.referencia" [ngClass]="{'is-invalid':  f.referencia.errors && f.referencia.invalid && f.referencia.touched}"
+                        placeholder="Rferencia" />
+                </div>
+                <b><label igxLabel for="modalidad">Correo</label></b>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='facorreo'></fa-icon></span>
+                    </div>
+                    <input formControlName="correo" type="text" value="{{personal.correo}}" class="form-control form-control-user" [(ngModel)]="personal.correo" [ngClass]="{'is-invalid':  f.correo.errors && f.correo.invalid && f.correo.touched}" placeholder="Correo Electrónico"
+                    />
+                </div>
+                <b><label igxLabel for="modalidad">Contraseña</label></b>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='fapassowrd'></fa-icon></span>
+                    </div>
+                    <input formControlName="password" type="password" value="{{personal.password}}" class="form-control form-control-user" [(ngModel)]="personal.password" [ngClass]="{'is-invalid':  f.password.errors && f.password.invalid && f.password.touched}" placeholder="Contraseña"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="btn-group" style="margin-left: 80%;">
+            <button type="submit" class="btn btn-success">
+                <fa-icon [icon]='faSave'></fa-icon>&nbsp;Registrarse
+            </button>
+        </div>
+    </div>
+</form>
+<hr>

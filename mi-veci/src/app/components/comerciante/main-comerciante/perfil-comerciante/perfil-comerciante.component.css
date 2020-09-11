@@ -1,0 +1,30 @@
+@import '../../../../../assets/css/cliente/css/atlantis.css';
+@import '../../../../../assets/css/cliente/css/demo.css';
+.image {
+    overflow: hidden;
+    height: 200px;
+    position: relative;
+}
+
+.avatar {
+    width: 124px;
+    height: 124px;
+    border: 1px solid white-color;
+    position: relative;
+}
+
+.author {
+    text-align: center;
+    text-transform: none;
+    margin-top: -77px;
+}
+
+#mapa {
+    width: 100%;
+    height: 200px;
+}
+
+.ubicacion {
+    margin-top: 20%;
+    margin-left: 30%;
+}

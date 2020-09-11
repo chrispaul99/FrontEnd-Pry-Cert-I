@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="text-center">
+        <fa-icon class="fa-4x" [icon]="faDireccion"></fa-icon>
+        <h4>{{title}}</h4>
+    </div>
+    <hr>
+</div>
+<form [formGroup]="form" class="user">
+    <div class='row'>
+        <div class='col-xs-offset-1 col-xs-6 col-sm-offset-1 col-sm-6'>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='faCiudad'></fa-icon></span>
+                    </div>
+                    <input formControlName="ciudad" id="ciudad" type="text" class="form-control form-control-user" [(ngModel)]="ubicacion.Direccion.ciudad" ngModelChange="ubicacion.direccion.ciudad = $event" [ngClass]="{'is-invalid': f.ciudad.errors  && f.ciudad.invalid && f.ciudad.touched}"
+                        placeholder="Ciudad" />
+                    <div *ngIf="f.ciudad.errors && (f.ciudad.invalid || f.ciudad.touched)" class="invalid-feedback">
+                        <div *ngIf="f.ciudad.errors.required">La ciudad es requerida</div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]='fareferencia'></fa-icon></span>
+                    </div>
+                    <input formControlName="referencia" id="referencia" type="text" class="form-control form-control-user" [(ngModel)]="ubicacion.Direccion.referencia" [ngClass]="{'is-invalid': submitted && f.referencia.errors   && f.referencia.invalid && f.referencia.touched}"
+                        placeholder="Referencia" />
+                    <div *ngIf="f.referencia.errors && (f.referencia.invalid || f.referencia.touched)" class="invalid-feedback">
+                        <div *ngIf="f.referencia.errors.required">La referencia es requerida</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='col-xs-offset-1 col-xs-6 col-sm-offset-1 col-sm-6'>
+            <div id="mapa">
+            </div>
+        </div>
+    </div>
+</form>
+<hr>

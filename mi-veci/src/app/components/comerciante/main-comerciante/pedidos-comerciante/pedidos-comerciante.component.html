@@ -1,0 +1,116 @@
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title font-weight-bold">Mis Pedidos</h4>
+                        <div class="btn-group ml-auto">
+                            <select [(ngModel)]="opcionSeleccionada" (change)="capturar()">
+                                <option value="I">Ingresados</option>
+                                <option value="T">Todos</option>
+                                <option value="E">Entregados</option>
+                                <option value="P">En Proceso</option>
+                                <option value="L">Listo para Entregar</option>
+                                <option value="V">Enviados</option>
+                                <option value="C">Cancelados</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="add-row" class="display table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Negocio</th>
+                                    <th class="text-center">Tiempo Estimado</th>
+                                    <th class="text-center">Total a Cobrar</th>
+                                    <th class="text-center">Estado</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of pedidosFilter">
+                                    <td *ngIf="item.estado == 'I'" class="text-center"><button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop" (click)="AbrirModal(item)"><i class="fa fa-check"></i></button>&nbsp;<button class="btn btn-danger" (click)="Cancelar(item)"><i class="fa fa-times"></i></button></td>
+                                    <td *ngIf="item.estado == 'E' || item.estado=='P' || item.estado=='L' || item.estado == 'V'" class="text-center"><button class="btn btn-success" disabled><i class="fa fa-check"></i></button></td>
+                                    <td *ngIf="item.estado == 'C'" class="text-center"><button class="btn btn-danger" disabled><i class="fa fa-times"></i></button></td>
+                                    <td class="text-center">{{item.fecha | date:'medium'}} </td>
+                                    <td class="text-center">{{item.Lista.Detalle[0].Producto.Negocio.nombre}}</td>
+                                    <td class="text-center">{{item.tiempoOrder}}</td>
+                                    <td class="text-center">{{item.Lista.totalPagar |number:'1.2' }} $</td>
+                                    <td class="text-center"><button class="btn btn-secondary">{{item.estado | estadoPedido}}</button></td>
+                                    <td *ngIf="item.estado == 'C' || item.estado == 'I'" class="text-center"></td>
+                                    <td *ngIf="item.estado == 'E' || item.estado=='P' || item.estado=='L' || item.estado == 'V'" class="text-center"><a class="btn btn-dark" (click)="generarPDF(item)"><i class="fa fa-print"></i></a></td>
+                                    <td class="text-center"><a class="btn btn-primary" (click)="detalles(item)" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title font-weight-bold" id="exampleModalLabel">Mi Lista de Compras</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <app-listado-cliente *ngIf="pedidoSeleccionado!=undefined" [pedido]="pedidoSeleccionado"></app-listado-cliente>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel"><b>Confirmación de Pedido</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-datos-tab" data-toggle="tab" href="#nav-datos" role="tab" aria-controls="nav-home" aria-selected="true"><b>Confirmación</b></a>
+                    </div>
+                </nav>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="user" enctype="multipart/form-data">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-datos" role="tabpanel" aria-labelledby="nav-datos-tab">
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <input formControlName="tiempo" type="time" class="form-control form-control-user" placeholder="Tiempo Estimado" [(ngModel)]="tiempo" [ngClass]="{'is-invalid': submitted && f.tiempo.errors}" />
+                                    <div *ngIf="submitted && f.tiempo.errors" class="invalid-feedback">
+                                        <div *ngIf="f.tiempo.errors.required">El tiempo es requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="Register-Form">
+        <div class="Register-Form-Logo" data-tilt>
+            <a routerLink="/">
+                <img src="assets/img/home/logo/logo-black.svg" alt="IMG">
+            </a>
+            <br>
+            <span>Registrarse</span>
+        </div>
+        <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+            <ng-wizard-step [title]="'Personal'" [description]="''">
+                <app-personal-register [personal]="persona"></app-personal-register>
+            </ng-wizard-step>
+
+            <ng-wizard-step [title]="'Ubicación'" [description]="''">
+                <app-ubicacion-register [ubicacion]="persona"></app-ubicacion-register>
+            </ng-wizard-step>
+
+            <ng-wizard-step [title]="'Credencial'" [description]="''">
+                <app-credential-register [personal]="persona"></app-credential-register>
+            </ng-wizard-step>
+
+            <ng-wizard-step [title]="'Confirmación'" [description]="''">
+                <app-confirmacion-register [personal]="persona"></app-confirmacion-register>
+            </ng-wizard-step>
+        </ng-wizard>
+    </div>
+    <pre>{{ persona | json }}</pre>
+</div>
+<app-footer></app-footer>

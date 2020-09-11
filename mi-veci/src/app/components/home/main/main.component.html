@@ -1,0 +1,142 @@
+<main id="main">
+    <!-- ======= Negocios ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>NUESTROS VECI'S ALIADOS</h2>
+                <p>Gracias aquellos VECI'S que confiaron en nosotros. Tu tienda puede estar aquí, únete a la familia MI VECI y saquemos adelante al barrio</p>
+            </div>
+            <!-- ======= Negocios Randomicos ======= -->
+            <section id="cliens" class="cliens section-bg">
+                <div class="container">
+
+                    <div class="row" data-aos="zoom-in">
+
+                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center" *ngFor="let x of negocios">
+                            <img src="{{x | noImage}}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- Fin de Negocios Randomicos -->
+            <div class="row" data-aos="fade-up" data-aos-delay="600">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-web" *ngFor="let x of negocios">
+                    <div class="portfolio-img"><img src="{{x | noImage}}" class="img-fluid" alt=""></div>
+                    <div class="portfolio-info">
+                        <h4>{{x.nombre}}</h4>
+                        <p>{{x.categoria}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Fin de Negocios -->
+    <!-- ======= Productos ======= -->
+    <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>PRODUCTOS QUE OFERTAN</h2>
+                <p>Estos son algunos de los productos de nuestros veci´s que nos ofrecen.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100" *ngFor="let x of productos">
+                    <div class="icon-box">
+                        <img src="{{x | noImage}}" class="img-fluid" alt="">
+                        <p><b><span>{{x.nombre}}</span></b> - <span>{{x.precio}}$</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Fin de Productos -->
+    <!-- ======= Quienes Somos ======= -->
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>QUIÉNES SOMOS</h2>
+            </div>
+            <div clas="container d-flex align-items-center">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p>
+                            Somos un grupo de emprendedores universitarios con el fin de ayudar en la promoción y venta de productos de las tiendas del barrio con el propósito de evitar aglomeraciones inecesarias al momento de comprar
+                        </p>
+                        <ul>
+                            <li><i class="ri-check-double-line"></i> Fácil y Sencillo</li>
+                            <li><i class="ri-check-double-line"></i> Sin largas filas</li>
+                            <li><i class="ri-check-double-line"></i> Envia tu lista y tu veci te lo prepará</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0">
+                        <p>
+                            Buscamos fomentar en las personas una mejor disciplina ante las situación que vive el país, ayuda a reactivar la economía de tu veci's más cercanos. Hazlo por ti, hazlo por tu familia
+                        </p>
+                        <a pageScroll [pageScrollOffset]="0" [pageScrollDuration]="1000" href="#team" class="btn-register scrollto">Equipo de trabajo</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a pageScroll [pageScrollOffset]="0" [pageScrollDuration]="1000" href="#contact" class="btn-register scrollto">Contáctanos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fin de Quienes Somos-->
+    <!-- ======= EquipoS ======= -->
+    <section id="team" class="team section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>EQUIPO DE TRABAJO</h2>
+                <p>Enfocado en el desarrollo de aplicaciones web en busca de solventar las necesidades de nuestra sociedad</p>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="pic"><img src="assets/img/home/equipo/team-1.jpg" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>Christian Guanopatin</h4>
+                            <span>Estudiante de Ingenieria de Software</span>
+                            <span>Universidad de las Fuerzas Armadas ESPE SEDE LATACUNGA</span>
+                            <p></p>
+                            <!--
+                <div class="social">
+                    <a href=""><i class="ri-twitter-fill"></i></a>
+                    <a href=""><i class="ri-facebook-fill"></i></a>
+                    <a href=""><i class="ri-instagram-fill"></i></a>
+                    <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="pic"><img src="assets/img/home/equipo/team-2.jpg" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>Mauro Ruiz</h4>
+                            <span>Estudiante de Ingenieria de Software</span>
+                            <span>Universidad de las Fuerzas Armadas ESPE SEDE LATACUNGA</span>
+                            <!--
+                <div class="social">
+                    <a href=""><i class="ri-twitter-fill"></i></a>
+                    <a href=""><i class="ri-facebook-fill"></i></a>
+                    <a href=""><i class="ri-instagram-fill"></i></a>
+                    <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Fin de Equipo -->
+    <!-- ======= Contactos ======= -->
+    <app-contact [email]="mainEmail"></app-contact>
+    <!-- Fin de Contactos -->
+</main>

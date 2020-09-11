@@ -1,0 +1,51 @@
+<div class='row'>
+    <div class='col-xs-offset-1 col-xs-6 col-sm-offset-1 col-sm-6'>
+        <br><br>
+        <div>
+            <label type="button" class="btn btn-primary btn-lg active d-flex justify-content-center">
+            Seleccionar Imagen <input  type="file" ng2FileSelect [uploader]="uploader" style="display: none;" [disabled]="!valido">
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="my-drop-zone" style="text-align: center;" *ngIf="valido">
+                    <p>Arrastrar imagen aqui...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='col-xs-offset-1 col-xs-6 col-sm-offset-1 col-sm-6'>
+        <img [src]="previewPath | noImage" alt="Avatar" *ngIf="previewPath==null" class="imagen">
+        <img [src]="previewPath" alt="Avatar" *ngIf="previewPath!=null" class="imagen">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tamaño</th>
+                    <th>Progreso</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of uploader.queue">
+                    <td>{{ item?.file?.name }}</td>
+                    <td>{{item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                    <td>
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar progress-bar-striped bg-info" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <button id="botonesTabla" type="button" class="btn btn-secondary" (click)="borrarImagen(item)"><span class="fa fa-trash"></span> Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+</div>
