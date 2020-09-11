@@ -38,7 +38,7 @@ export class MisPedidosClienteComponent implements OnInit {
   }
   generarPDF(pedido:Pedido): void {
     let person:Persona = new Persona();
-    let hoy = new Date();
+    let hoy = new Date().toLocaleString();
     this.personaService.retrieve(pedido.idCliente).subscribe(result=>{
       person = result;
     },(error)=>console.log(error),
@@ -57,7 +57,7 @@ export class MisPedidosClienteComponent implements OnInit {
       pdf.add(new Columns([ '', ' ', person.celular ]).fontSize(16).alignment('justify').end);
       pdf.add(new Columns([ '', ' ', person.correo ]).fontSize(16).alignment('justify').end);
       pdf.add(pdf.ln(2));
-      pdf.add(new Txt('Generado el '+ hoy.getDate()).fontSize(20).bold().alignment('left').end);
+      pdf.add(new Txt('Generado el '+ hoy).fontSize(20).bold().alignment('left').end);
       pdf.add(pdf.ln(3));
       pdf.add(this.getListado(pedido.Lista));
       pdf.add(pdf.ln(1));
@@ -81,19 +81,20 @@ export class MisPedidosClienteComponent implements OnInit {
           [{
             text: 'Nº',
           },
-          {
-            text: 'Producto',
-          },
-          {
-            text: 'Cantidad',
-          },
-          {
-            text: 'Precio',
-          },
-          {
-            text: 'Total',
-          },
         ],
+        [
+        {
+          text: 'Producto',
+        },],[
+        {
+          text: 'Cantidad',
+        },],[
+        {
+          text: 'Precio',
+        },],[
+        {
+          text: 'Total',
+        },]
         ]
       }]
     );
@@ -103,21 +104,20 @@ export class MisPedidosClienteComponent implements OnInit {
           columns: [
             [{
               text: i,
-            },
+            },],[
             {
               text: detalle.Producto.nombre,
-            },
+            },],[
             {
               text: detalle.cantidad,
-            },
+            },],[
             {
               text: detalle.Producto.precio,
-            },
+            },],[
             {
               text: detalle.total,
-            },
+            },],
           ],
-          ]
         }]
       );
     });
