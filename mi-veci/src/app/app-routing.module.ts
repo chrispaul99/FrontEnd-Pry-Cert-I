@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule) },
   { path: 'Administrador', loadChildren: () => import('./components/administrador/administrador.module').then(m => m.AdministradorModule), canActivate: [ AuthGuard ], data:{permittedRoles:["A"]} },
-  { path: 'Comerciante', loadChildren: () => import('./components/comerciante/comerciante.module').then(m => m.ComercianteModule) , canActivate: [ AuthGuard ], data:{permittedRoles:["N"]}},
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'Cliente', loadChildren: () => import('./components/cliente/cliente.module').then(m => m.ClienteModule), canActivate: [ AuthGuard ], data:{permittedRoles:["C"]} },
 ];

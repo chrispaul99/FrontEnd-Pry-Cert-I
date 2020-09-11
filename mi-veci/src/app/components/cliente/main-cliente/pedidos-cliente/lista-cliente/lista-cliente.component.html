@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body " *ngIf="!verificador">
+                <div id="myFile" class="card-body " *ngIf="!verificador">
                     <div class="d-flex " *ngFor="let item of listado |paginate: {itemsPerPage: 3, currentPage: pageActual}; index as i">
                         <div class="avatar ">
                             <img src="{{item.Producto | noImage}}" class="avatar-title rounded-circle border border-white bg-info ">

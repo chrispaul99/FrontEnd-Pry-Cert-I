@@ -31,7 +31,7 @@
                                     <td class="text-center">{{item.tiempoOrder}}</td>
                                     <td class="text-center">{{item.Lista.totalPagar |number:'1.2' }} $</td>
                                     <td class="text-center">{{item.estado}}</td>
-                                    <td class="text-center"><a class="btn btn-success">Imprimir</a></td>
+                                    <td class="text-center"><a class="btn btn-success" (click)="generarPDF()">Imprimir</a></td>
                                     <td class="text-center"><a class="btn btn-primary" (click)="detalles(item)" data-toggle="modal" data-target="#exampleModal">Ver</a></td>
                                 </tr>
                             </tbody>
