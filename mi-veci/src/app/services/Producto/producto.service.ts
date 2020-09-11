@@ -39,4 +39,7 @@ export class ProductoService {
     }
     return this.http.put<any>(this.url, productoBody, environment.httpOptions);
   }
+  Stock10(id:number):Observable<any>{
+    return this.http.get<any>(this.url + '/Stock10/?id=' + id, environment.httpOptions).pipe(retry(1));
+  }
 }

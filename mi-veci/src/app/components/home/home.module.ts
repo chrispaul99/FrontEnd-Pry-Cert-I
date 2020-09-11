@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -19,7 +20,9 @@ import { SharedModule } from '../../shared/pipes/shared/shared.module';
     HomeRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgxPageScrollModule,
+    NgxPageScrollCoreModule,
   ]
 })
 export class HomeModule { }

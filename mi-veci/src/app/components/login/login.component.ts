@@ -4,6 +4,7 @@ import { LoginService } from '../../services/Login/login.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { EncryptService } from 'src/app/services/Encrypt/encrypt.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   usuario: Login = new Login();
-  constructor(private auth: LoginService,private router: Router) {
+  constructor(private auth: LoginService,private router: Router,private EncrDecr: EncryptService) {
    }
 
   ngOnInit(): void {
@@ -30,7 +31,9 @@ export class LoginComponent implements OnInit {
     });
     Swal.showLoading();
 
-
+    var encrypted = this.EncrDecr.set('123456$#@$^@1ERF', this.usuario.password);
+    console.log(encrypted);
+    this.usuario.password = encrypted;
     this.auth.login( this.usuario )
       .subscribe( resp => {
         this.auth.verificarRol();

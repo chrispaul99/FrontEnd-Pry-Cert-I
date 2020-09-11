@@ -6,7 +6,7 @@ import { StepChangedArgs, STEP_STATE, NgWizardService } from 'ng-wizard';
 import { PersonaService } from 'src/app/services/Persona/persona.service';
 import { DireccionService } from 'src/app/services/Direccion/direccion.service';
 import { Router } from '@angular/router';
-
+import { EncryptService } from '../../../services/Encrypt/encrypt.service';
 @Component({
   selector: 'app-confirmacion-register',
   templateUrl: './confirmacion-register.component.html',
@@ -39,7 +39,7 @@ export class ConfirmacionRegisterComponent implements OnInit {
     hidden: STEP_STATE.hidden
   };
   // tslint:disable-next-line: max-line-length
-  constructor(private router: Router, private direccionService: DireccionService, private personaService: PersonaService, private ngWizardService: NgWizardService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private direccionService: DireccionService, private personaService: PersonaService, private ngWizardService: NgWizardService, private formBuilder: FormBuilder,private EncrDecr: EncryptService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -76,7 +76,9 @@ export class ConfirmacionRegisterComponent implements OnInit {
       console.error('Error en formulario');
       return;
     }
-    this.direccionService.create(this.personal.direccion).subscribe(
+    var encrypted = this.EncrDecr.set('123456$#@$^@1ERF', this.personal.password);
+    this.personal.password = encrypted;
+    this.direccionService.create(this.personal.Direccion).subscribe(
       result => {
         this.id = result.idDireccion;
         console.log(result);

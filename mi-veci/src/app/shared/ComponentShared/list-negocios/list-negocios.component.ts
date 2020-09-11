@@ -15,6 +15,7 @@ import { ComercianteService } from 'src/app/services/Comerciante/comerciante.ser
 export class ListNegociosComponent implements OnInit {
 
   negocios: Negocio[];
+  negociosFilter:Negocio[];
   newNegocio:Negocio = new Negocio();
   open = false;
   famobile = faPhone;
@@ -26,6 +27,7 @@ export class ListNegociosComponent implements OnInit {
   titulo:string;
   rol:string;
   id:number;
+  opcionSeleccionada:string = "T";
   form: FormGroup;
   submitted = false;
   mapa: mapboxgl.Map;
@@ -46,6 +48,7 @@ export class ListNegociosComponent implements OnInit {
         this.titulo = "Negocios Cercanos";
         this.negocioService.listarNegocios().subscribe(result => {
           this.negocios = result;
+          this.capturar();
         },
         (error) => console.log(error),
         () => {
@@ -59,6 +62,7 @@ export class ListNegociosComponent implements OnInit {
         {
           this.negocioService.listarNegociosComerciante(this.id).subscribe(result => {
             this.negocios = result;
+            this.capturar();
           },
           (error) => console.log(error),
           () => {
@@ -69,7 +73,6 @@ export class ListNegociosComponent implements OnInit {
         break;
       }
     }
-    
   }
 
   Ocultar($event): void{
@@ -102,5 +105,57 @@ export class ListNegociosComponent implements OnInit {
     this.tituloModal = "Actualizar Negocio";
     $("#staticBackdrop").modal('show');
   }
-  
+  verificarHorario(inicio: string, fin: string): boolean{
+    const horaActual = new Date();
+    const horarioOpen = inicio.split(':');
+    const horarioClose = fin.split(':');
+    const Open = new Date();
+    const Close = new Date();
+    // tslint:disable-next-line: radix
+    Open.setHours(parseInt(horarioOpen[0]), parseInt(horarioOpen[1]));
+    // tslint:disable-next-line: radix
+    Close.setHours(parseInt(horarioClose[0]), parseInt(horarioClose[1]));
+    if (Open.getTime() > Close.getTime()){
+      // tslint:disable-next-line: radix
+      Close.setHours(parseInt(horarioClose[0]) + 24, parseInt(horarioClose[1]));
+       // tslint:disable-next-line: radix
+      if (parseInt(horarioOpen[0]) > 12){
+         // tslint:disable-next-line: radix
+        Open.setHours(parseInt(horarioOpen[0]) - 12, parseInt(horarioOpen[1]));
+      }
+    }
+    return this.ControlHorario(Open.getTime(), Close.getTime(), horaActual.getTime());
+  }
+
+  ControlHorario(Inicio: number, Fin: number, actual: number): boolean{
+    if (Inicio === Fin){
+      return true;
+    }
+    if ( actual < Fin && actual >= Inicio)
+    {
+      return true;
+    }
+    return false;
+    }
+  NegociosArbiertos(){
+    this.negociosFilter = [];
+    this.negocios.forEach(element => {
+      if(this.verificarHorario(element.horarioInicial,element.horarioFinal)){
+        this.negociosFilter.push(element);
+      }
+    });
+  }
+  TodosNegocio(){
+    this.negociosFilter = this.negocios;
+  }
+  capturar() {
+    if(this.rol == "C"){
+      if(this.opcionSeleccionada !="T")
+      this.NegociosArbiertos();
+      else
+      this.TodosNegocio();
+    }
+    else
+      this.negociosFilter = this.negocios;
+  }
 }

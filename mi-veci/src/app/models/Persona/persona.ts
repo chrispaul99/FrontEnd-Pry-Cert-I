@@ -6,7 +6,7 @@ export class Persona {
     apellidos: string;
     cedula: string;
     celular: string;
-    direccion: Direccion;
+    Direccion: Direccion = new Direccion();
     correo: string;
     password: string;
     rol = 'C';

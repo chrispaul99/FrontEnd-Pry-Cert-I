@@ -26,12 +26,15 @@ export class ProductosNegocioComponent implements OnInit {
   ban = true;
   vacio = true;
   rol:string;
+  apertura=false;
   constructor(private detalleService: DetalleService,private productosService:ProductoService) { }
 
   ngOnInit(): void {
     const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
     this.rol = payLoad.rol;
     this.verificarSeleccionado();
+    this.apertura = this.verificarHorario(this.producto.Negocio.horarioInicial,this.producto.Negocio.horarioFinal);
+
   }
 
   aumentar(): void{
@@ -179,4 +182,36 @@ export class ProductosNegocioComponent implements OnInit {
   Editar(){
     this.productoSelect.emit(this.producto);
   }
+  verificarHorario(inicio: string, fin: string): boolean{
+    const horaActual = new Date();
+    const horarioOpen = inicio.split(':');
+    const horarioClose = fin.split(':');
+    const Open = new Date();
+    const Close = new Date();
+    // tslint:disable-next-line: radix
+    Open.setHours(parseInt(horarioOpen[0]), parseInt(horarioOpen[1]));
+    // tslint:disable-next-line: radix
+    Close.setHours(parseInt(horarioClose[0]), parseInt(horarioClose[1]));
+    if (Open.getTime() > Close.getTime()){
+      // tslint:disable-next-line: radix
+      Close.setHours(parseInt(horarioClose[0]) + 24, parseInt(horarioClose[1]));
+       // tslint:disable-next-line: radix
+      if (parseInt(horarioOpen[0]) > 12){
+         // tslint:disable-next-line: radix
+        Open.setHours(parseInt(horarioOpen[0]) - 12, parseInt(horarioOpen[1]));
+      }
+    }
+    return this.ControlHorario(Open.getTime(), Close.getTime(), horaActual.getTime());
+  }
+
+  ControlHorario(Inicio: number, Fin: number, actual: number): boolean{
+    if (Inicio === Fin){
+      return true;
+    }
+    if ( actual < Fin && actual >= Inicio)
+    {
+      return true;
+    }
+    return false;
+    }
 }

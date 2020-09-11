@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                         <div class="author">
-                            <img class="avatar" src="../../../../../assets/img/cliente/img/profile.jpg" alt="...">
+                            <img class="avatar" src="assets/img/usuario.svg" alt="...">
                             <h5 class="card-title text-info">{{ persona.nombres }} {{ persona.apellidos }}</h5>
                         </div>
                     </div>
@@ -68,12 +68,12 @@
                             <form [formGroup]="form">
                                 <div class="form-group">
                                     <label>Ciudad</label>
-                                    <input formControlName="ciudad" type="text" [(ngModel)]="direccion.ciudad" [ngClass]="{'is-invalid': submitted && f.ciudad.errors}" class="form-control" placeholder="Ciudad" />
+                                    <input formControlName="ciudad" type="text" [(ngModel)]="persona.Direccion.ciudad" [ngClass]="{'is-invalid': submitted && f.ciudad.errors}" class="form-control" placeholder="Ciudad" />
                                     <div *ngIf="submitted && f.ciudad.errors">
                                         <div *ngIf="f.ciudad.errors.required">La ciudad es requerida</div>
                                     </div>
                                     <label>Referencia</label>
-                                    <input formControlName="referencia" type="text" [(ngModel)]="direccion.referencia" [ngClass]="{'is-invalid': submitted && f.referencia.errors}" class="form-control" placeholder="Referencia" />
+                                    <input formControlName="referencia" type="text" [(ngModel)]="persona.Direccion.referencia" [ngClass]="{'is-invalid': submitted && f.referencia.errors}" class="form-control" placeholder="Referencia" />
                                     <div *ngIf="submitted && f.referencia.errors">
                                         <div *ngIf="f.referencia.errors.required">La referencia es requerida</div>
                                     </div>
@@ -81,7 +81,12 @@
                             </form>
                         </div>
                         <div class="col-md-8">
-                            <div id="mapa"></div>
+                            <div id="mapa">
+                                <button class="btn btn-primary btn-round  ubicacion" *ngIf="!ubicacion" (click)="direccion()">
+                                        <i class="fa fa-globe-americas"></i>
+                                        Ver Ubicacion
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="row">

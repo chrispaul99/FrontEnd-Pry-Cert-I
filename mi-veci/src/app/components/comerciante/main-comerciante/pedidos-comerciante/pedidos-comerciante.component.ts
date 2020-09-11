@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/models/Pedido/pedido';
 import { PedidoService } from 'src/app/services/Pedido/pedido.service';
 import Swal from 'sweetalert2';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pedidos-comerciante',
@@ -14,9 +15,11 @@ export class PedidosComercianteComponent implements OnInit {
   pedidosFilter: Pedido[];
   pedidoSeleccionado: Pedido;
   elegido:string;
+  form: FormGroup;  
+  submitted: boolean = false;
   opcionSeleccionada:string = "I";
-  verSeleccion: string        = '';
-  constructor(private pedidosService: PedidoService,) { }
+  tiempo:string = "";
+  constructor(private pedidosService: PedidoService,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     Swal.fire({
@@ -27,7 +30,9 @@ export class PedidosComercianteComponent implements OnInit {
     Swal.showLoading();
     this.elegido = "I";
     this.getPedidos();
-   
+    this.form = this.formBuilder.group({
+      tiempo: ['', [Validators.required]],
+    });
     
   }
   detalles(pedido: Pedido): void{
@@ -36,7 +41,7 @@ export class PedidosComercianteComponent implements OnInit {
   }
   Confirmar(pedido:Pedido){
     pedido.estado = "P";
-    pedido.tiempoOrder = "30 min";
+    pedido.tiempoOrder = this.DeterminarTiempo();
     this.pedidosService.create(pedido).subscribe(result=>{
       console.log(result);
       Swal.fire({
@@ -47,6 +52,7 @@ export class PedidosComercianteComponent implements OnInit {
         timer: 1500
       });
     });
+    window.location.reload();
   }
   Cancelar(pedido:Pedido){
     Swal.fire({
@@ -80,6 +86,14 @@ export class PedidosComercianteComponent implements OnInit {
       }
     });
   }
+  DeterminarTiempo():string{
+    let timetrans=this.tiempo.split(':');
+    let final = "";
+    const pedidotime = new Date();
+    pedidotime.setHours(parseInt(timetrans[0]),parseInt(timetrans[1]));
+    return final = pedidotime.getHours() + ' h' +' - '+ pedidotime.getMinutes()+ ' min';
+    
+  }
   getPedidosFilter(estado:string){
     this.elegido = estado;
     console.log(estado);
@@ -106,5 +120,21 @@ export class PedidosComercianteComponent implements OnInit {
       this.getPedidosFilter(this.opcionSeleccionada);
     else
       this.getTodos();
-}
+    }
+    onSubmit() : void {
+
+      this.submitted = true;
+  
+      if(this.form.invalid){
+        console.error('Error en formulario');
+        return;
+      }
+      this.Confirmar(this.pedidoSeleccionado);
+    }
+    get f(){
+      return this.form.controls;
+    }
+    AbrirModal(pedido:Pedido){
+      this.pedidoSeleccionado = pedido;     
+    }
 }

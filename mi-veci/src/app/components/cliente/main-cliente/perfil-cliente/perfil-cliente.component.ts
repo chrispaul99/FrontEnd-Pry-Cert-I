@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonaService } from '../../../../services/Persona/persona.service';
-import { DireccionService } from '../../../../services/Direccion/direccion.service';
 import { Persona } from '../../../../models/Persona/persona';
-import { Direccion } from '../../../../models/Direccion/direccion';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import { environment } from 'src/environments/environment';
+import { LoginService } from '../../../../services/Login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-cliente',
@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 export class PerfilClienteComponent implements OnInit {
 
   persona: Persona = new Persona();
-  direccion: Direccion = new Direccion();
+  ubicacion:boolean;
   idDir: number;
   form: FormGroup;
   submitted = false;
@@ -25,11 +25,13 @@ export class PerfilClienteComponent implements OnInit {
 
   constructor(
     private _personaService: PersonaService,
-    private _direccionService: DireccionService,
-    private formBuilder: FormBuilder
+    private auth:LoginService,
+    private formBuilder: FormBuilder,
+    private router:Router
     ) { }
 
   ngOnInit(): void {
+    this.ubicacion =false;
     this.form = this.formBuilder.group({
       nombres: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
@@ -45,19 +47,10 @@ export class PerfilClienteComponent implements OnInit {
     this._personaService.retrieve(this.idCliente).subscribe(
       result => {
         this.persona = result;
-        this._direccionService.retrieve(result.idDireccion).subscribe(data => {
-          this.direccion = data;
-          // this.direccion.ciudad = data.ciudad;
-          // this.direccion.referencia = data.referencia;
-        },
-        err => console.log(err),
-        () => {
-          this.verMapa();
-        });
+        console.log(this.persona);
       }
     );
   }
-
   get f(){
     return this.form.controls;
   }
@@ -73,50 +66,67 @@ export class PerfilClienteComponent implements OnInit {
       return;
     }
     /** Armar la data de Persona y Direccion */
-    this.persona.idPersona = this.idCliente;
-    this._direccionService.retrieve(this.persona.idDireccion).subscribe(data => {
-      this.idDir = data.idDireccion;
-    },
-    err => console.log(err),
-    () => {
-      this._personaService.create(this.persona).subscribe(
-        result => {
-          this.submitted = false;
-          this.direccion.idDireccion = this.idDir;
-          this._direccionService.create(this.direccion).subscribe();
-        },
-        er => console.log(er),
-        () => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Perfil Actualizado',
-            showConfirmButton: false,
-            timer: 1500
-          });
-        });
+    Swal.fire({
+      title: 'Actualizar Perfil',
+      text: '¿Esta seguro que desea actualizar su perfil, si la respuesta es SI deberá volver a Iniciar Sesión',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.value) {
+          this.persona.idPersona = this.idCliente;
+          this._personaService.create(this.persona).subscribe(
+            result => {
+              this.submitted = false;
+            },
+            er => console.log(er),
+            () => {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Perfil Actualizado',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            });
+          this.auth.logout();
+          this.router.navigate(['/login']);
+      }
     });
+   
   }
 
-  verMapa(): void{
-    const lat = this.direccion.latitud;
-    const lon = this.direccion.longitud;
+  direccion(){
+    let lat = this.persona.Direccion.latitud;
+    let lon = this.persona.Direccion.longitud;
+    let zoom = 15;
     mapboxgl.accessToken = environment.mapboxkey;
     this.mapa = new mapboxgl.Map({
     container: 'mapa',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [lon, lat],
-    zoom: 15
+    zoom: zoom
     });
-    const marker = new mapboxgl.Marker({
-      draggable: false
-  })
-      .setLngLat([lon, lat])
-      .addTo(this.mapa);
     this.mapa.addControl(new mapboxgl.NavigationControl());
     this.mapa.addControl(new mapboxgl.GeolocateControl());
     this.mapa.addControl(new mapboxgl.FullscreenControl());
-    // this.ubicacion = true;
+    this.marcador(lon,lat);
+    this.ubicacion = true;
+}
+// tslint:disable-next-line: typedef
+marcador(long:string,lati:string){
+      const marker = new mapboxgl.Marker({
+        draggable: true
+    })
+        .setLngLat([long, lati])
+        .addTo(this.mapa);
+    marker.on('dragend', () => {
+    this.persona.Direccion.latitud = marker._lngLat.lat;
+    this.persona.Direccion.longitud = marker._lngLat.lng;
+    console.log('DRAG: ' + marker.getLngLat());
+    });
   }
-
 }

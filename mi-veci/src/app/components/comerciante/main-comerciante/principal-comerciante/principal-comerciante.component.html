@@ -5,157 +5,43 @@
                 <h2 class="text-black pb-2 fw-bold">Menú Principal</h2>
                 <h5 class="text-black op-7 mb-2"><b>Bienvenido a MI VECI</b></h5>
             </div>
-            <div class="ml-md-auto py-2 py-md-0">
-                <a routerLink="/Cliente/Main/Negocios/All" class="btn btn-primary btn-round text-white">Realizar Pedido</a>&nbsp;&nbsp;
-                <a href="#" class="btn btn-dark btn-round mr-2 text-white">Soporte Técnico</a>
-            </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Mis Productos Favoritos</div>
+                <div class="card-title"><b>Productos con Stock menor a 10</b></div>
             </div>
-            <div class="card-body pb-0">
-                <div class="d-flex">
-                    <div class="avatar">
-                        <img src="assets/img/home/logo/logo.svg" alt="..." class="avatar-img rounded-circle">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <app-grafica-horizontal [single]="TopProductos"></app-grafica-horizontal>
                     </div>
-                    <div class="flex-1 pt-1 ml-2">
-                        <h6 class="fw-bold mb-1">CSS</h6>
-                        <small class="text-muted">Cascading Style Sheets</small>
-                    </div>
-                    <div class="d-flex ml-auto align-items-center">
-                        <h3 class="text-info fw-bold">+$17</h3>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <div class="avatar">
-                        <img src="assets/img/home/logo/logo.svg" alt="..." class="avatar-img rounded-circle">
-                    </div>
-                    <div class="flex-1 pt-1 ml-2">
-                        <h6 class="fw-bold mb-1">J.CO Donuts</h6>
-                        <small class="text-muted">The Best Donuts</small>
-                    </div>
-                    <div class="d-flex ml-auto align-items-center">
-                        <h3 class="text-info fw-bold">+$300</h3>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="d-flex">
-                    <div class="avatar">
-                        <img src="assets/img/home/logo/logo.svg" alt="..." class="avatar-img rounded-circle">
-                    </div>
-                    <div class="flex-1 pt-1 ml-2">
-                        <h6 class="fw-bold mb-1">Ready Pro</h6>
-                        <small class="text-muted">Bootstrap 4 Admin Dashboard</small>
-                    </div>
-                    <div class="d-flex ml-auto align-items-center">
-                        <h3 class="text-info fw-bold">+$350</h3>
-                    </div>
-                </div>
-                <div class="separator-dashed"></div>
-                <div class="pull-in">
-                    <canvas id="topProductsChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <div class="card-title fw-mediumbold">Últimos Pedidos</div>
+                <div class="card-title fw-mediumbold"><b>Pedidos Recibidos</b></div>
                 <div class="card-list">
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="assets/img/home/logo/logo.svg" alt="..." class="avatar-img rounded-circle">
+                    <div class="item-list" *ngFor="let item of top5Pedidos">
+                        <div class="avatar ">
+                            <img src="{{item.Lista.Detalle[0].Producto.Negocio.imagen | noImage}}" class="avatar-title rounded-circle border border-white ">
                         </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Jimmy Denis</div>
-                            <div class="status">Graphic Designer</div>
+                        <div class="flex-1 ml-3 pt-1 ">
+                            <h6 class="text-uppercase fw-bold mb-1 ">{{item.Lista.Detalle[0].Producto.Negocio.nombre}}</h6>
+                            <h5 text-uppercase fw-bold mb-1><b>Fecha:</b> {{item.fecha | date:'medium'}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Estado:</b> {{item.estado | estadoPedido}}</h5>
                         </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                    </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="assets/img/home/logo/logo.svg" alt="..." class="avatar-img rounded-circle">
+                        <div class="float-right pt-1 ">
+                            <span class="text-uppercase text-info fw-bold mb-4">{{item.Lista.totalPagar |number:'1.2'}} $</span>&nbsp;&nbsp;&nbsp;
                         </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Chad</div>
-                            <div class="status">CEO Zeleaf</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                    </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="assets/img/home/logo/logo.svg" alt="..." class="avatar-img rounded-circle">
-                        </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Talha</div>
-                            <div class="status">Front End Designer</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                    </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="assets/img/home/logo/logo.svg" alt="..." class="avatar-img rounded-circle">
-                        </div>
-                        <div class="info-user ml-3">
-                            <div class="username">John Doe</div>
-                            <div class="status">Back End Developer</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                    </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="assets/img/home/logo/logo.svg" alt="..." class="avatar-img rounded-circle">
-                        </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Talha</div>
-                            <div class="status">Front End Designer</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                    </div>
-                    <div class="item-list">
-                        <div class="avatar">
-                            <img src="assets/img/home/logo/logo.svg" alt="..." class="avatar-img rounded-circle">
-                        </div>
-                        <div class="info-user ml-3">
-                            <div class="username">Jimmy Denis</div>
-                            <div class="status">Graphic Designer</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-xs">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
+                        <div class="separator-dashed "></div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card card-primary bg-primary-gradient">
-            <div class="card-body">
-                <h4 class="mt-3 b-b1 pb-2 mb-4 fw-bold">Total de Pedidos</h4>
-                <h1 class="mb-4 fw-bold">17</h1>
-                <div id="activeUsersChart"></div>
-                <h4 class="mt-5 pb-3 mb-0 fw-bold">Detalle de Pedidos</h4>
-                <ul class="list-unstyled">
-                    <li class="d-flex justify-content-between pb-1 pt-1"><small>Pedido más barato</small> <span>7</span></li>
-                    <li class="d-flex justify-content-between pb-1 pt-1"><small>Pedido más caro</small> <span>10</span></li>
-                </ul>
             </div>
         </div>
     </div>

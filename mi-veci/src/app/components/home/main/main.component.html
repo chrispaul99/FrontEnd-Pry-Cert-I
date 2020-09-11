@@ -26,8 +26,6 @@
                     <div class="portfolio-info">
                         <h4>{{x.nombre}}</h4>
                         <p>{{x.categoria}}</p>
-                        <a href="{{x | noImage}}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-fullscreen"></i></a>
-                        <a routerLink="/login" class="details-link" title="Más Información"><i class="bx bx-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -79,8 +77,8 @@
                         <p>
                             Buscamos fomentar en las personas una mejor disciplina ante las situación que vive el país, ayuda a reactivar la economía de tu veci's más cercanos. Hazlo por ti, hazlo por tu familia
                         </p>
-                        <a pageScroll href="#team" class="btn-register scrollto">Equipo de trabajo</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a pageScroll href="#contact" class="btn-register scrollto">Contáctanos</a>
+                        <a pageScroll [pageScrollOffset]="0" [pageScrollDuration]="1000" href="#team" class="btn-register scrollto">Equipo de trabajo</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a pageScroll [pageScrollOffset]="0" [pageScrollDuration]="1000" href="#contact" class="btn-register scrollto">Contáctanos</a>
                     </div>
                 </div>
             </div>

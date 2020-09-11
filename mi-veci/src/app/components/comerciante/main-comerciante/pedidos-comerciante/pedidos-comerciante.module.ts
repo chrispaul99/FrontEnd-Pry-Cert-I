@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PedidosComercianteRoutingModule } from './pedidos-comerciante-routing.module';
 import { PedidosComercianteComponent } from './pedidos-comerciante.component';
 import { SharedModule } from '../../../../shared/pipes/shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
     PedidosComercianteRoutingModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class PedidosComercianteModule { }

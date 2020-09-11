@@ -89,16 +89,16 @@ export class DetalleNegocioComponent implements OnInit {
     let Open = new Date();
     let Close = new Date();
     // tslint:disable-next-line: radix
-    Open.setHours(parseInt(horarioOpen[0]), parseInt(horarioOpen[1]), parseInt(horarioOpen[2]));
+    Open.setHours(parseInt(horarioOpen[0]), parseInt(horarioOpen[1]));
     // tslint:disable-next-line: radix
-    Close.setHours(parseInt(horarioClose[0]), parseInt(horarioClose[1]), parseInt(horarioClose[2]));
+    Close.setHours(parseInt(horarioClose[0]), parseInt(horarioClose[1]));
     if (Open.getTime() > Close.getTime()){
       // tslint:disable-next-line: radix
-      Close.setHours(parseInt(horarioClose[0]) + 24, parseInt(horarioClose[1]), parseInt(horarioClose[2]));
+      Close.setHours(parseInt(horarioClose[0]) + 24, parseInt(horarioClose[1]));
        // tslint:disable-next-line: radix
       if (parseInt(horarioOpen[0]) > 12){
          // tslint:disable-next-line: radix
-        Open.setHours(parseInt(horarioOpen[0]) - 12, parseInt(horarioOpen[1]), parseInt(horarioOpen[2]));
+        Open.setHours(parseInt(horarioOpen[0]) - 12, parseInt(horarioOpen[1]));
       }
     }
     return this.ControlHorario(Open.getTime(), Close.getTime(), horaActual.getTime());

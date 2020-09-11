@@ -1,7 +1,8 @@
 <div class=" card full-height bg-default">
     <div class="card-header ">
         <div class="card-head-row ">
-            <div class="card-title font-weight-bold">{{pedido.Lista.Detalle[0].Producto.Negocio.nombre}}</div>
+            <div class="card-title font-weight-bold" *ngIf="rol=='C'">{{pedido.Lista.Detalle[0].Producto.Negocio.nombre}}</div>
+            <div class="card-title font-weight-bold" *ngIf="rol=='N'">Cliente: {{cliente.nombres}} {{cliente.apellidos}} ({{cliente.celular}})</div>
         </div>
     </div>
     <div class="card-body ">

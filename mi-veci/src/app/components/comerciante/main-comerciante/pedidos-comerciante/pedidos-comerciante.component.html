@@ -36,7 +36,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of pedidosFilter">
-                                    <td *ngIf="item.estado == 'I'" class="text-center"><button class="btn btn-success" (click)="Confirmar(item)"><i class="fa fa-check"></i></button>&nbsp;<button class="btn btn-danger" (click)="Cancelar(item)"><i class="fa fa-times"></i></button></td>
+                                    <td *ngIf="item.estado == 'I'" class="text-center"><button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop" (click)="AbrirModal(item)"><i class="fa fa-check"></i></button>&nbsp;<button class="btn btn-danger" (click)="Cancelar(item)"><i class="fa fa-times"></i></button></td>
                                     <td *ngIf="item.estado == 'E' || item.estado=='P' || item.estado=='L' || item.estado == 'V'" class="text-center"><button class="btn btn-success" disabled><i class="fa fa-check"></i></button></td>
                                     <td *ngIf="item.estado == 'C'" class="text-center"><button class="btn btn-danger" disabled><i class="fa fa-times"></i></button></td>
                                     <td class="text-center">{{item.fecha | date:'medium'}} </td>
@@ -70,6 +70,46 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel"><b>Confirmación de Pedido</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-datos-tab" data-toggle="tab" href="#nav-datos" role="tab" aria-controls="nav-home" aria-selected="true"><b>Confirmación</b></a>
+                    </div>
+                </nav>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="user" enctype="multipart/form-data">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-datos" role="tabpanel" aria-labelledby="nav-datos-tab">
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <input formControlName="tiempo" type="time" class="form-control form-control-user" placeholder="Tiempo Estimado" [(ngModel)]="tiempo" [ngClass]="{'is-invalid': submitted && f.tiempo.errors}" />
+                                    <div *ngIf="submitted && f.tiempo.errors" class="invalid-feedback">
+                                        <div *ngIf="f.tiempo.errors.required">El tiempo es requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

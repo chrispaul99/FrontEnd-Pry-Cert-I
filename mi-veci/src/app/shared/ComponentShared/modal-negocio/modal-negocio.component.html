@@ -16,8 +16,8 @@
                         </div>
                         <input formControlName="nombre" type="text" class="form-control form-control-user" placeholder="Nombre del Negocio" [(ngModel)]="negocio.nombre" [ngClass]="{'is-invalid': submitted && f.nombre.errors}" />
                         <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
-                            <div *ngIf="f.nombre.errors.required">La cédula es requerida</div>
-                            <div *ngIf="f.nombre.errors.minlength">La cédula debe tener mínimo 10 caracteres</div>
+                            <div *ngIf="f.nombre.errors.required">El nombre del Negocio es requerido</div>
+                            <div *ngIf="f.nombre.errors.minlength">El nombre del Negocio debe tener mínimo 2 caracteres</div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -26,8 +26,8 @@
                         </div>
                         <input formControlName="categoria" type="text" class="form-control form-control-user" placeholder="Categoría" [(ngModel)]="negocio.categoria" [ngClass]="{'is-invalid': submitted && f.categoria.errors}" />
                         <div *ngIf="submitted && f.categoria.errors" class="invalid-feedback">
-                            <div *ngIf="f.categoria.errors.required">La cédula es requerida</div>
-                            <div *ngIf="f.categoria.errors.minlength">La cédula debe tener mínimo 10 caracteres</div>
+                            <div *ngIf="f.categoria.errors.required">La Categoría es requerida</div>
+                            <div *ngIf="f.categoria.errors.minlength">La Categoríadebe tener mínimo 2 caracteres</div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -36,7 +36,7 @@
                         </div>
                         <textarea formControlName="descripcion" type="text" class="form-control form-control-user" placeholder="Descripción" [(ngModel)]="negocio.descripcion" [ngClass]="{'is-invalid': submitted && f.descripcion.errors}"></textarea>
                         <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
-                            <div *ngIf="f.descripcion.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.descripcion.errors.required">La Descripción es requerida</div>
                         </div>
                     </div>
 
@@ -47,7 +47,7 @@
                         </div>
                         <input formControlName="horarioInicial" type="time" class="form-control form-control-user" [(ngModel)]="negocio.horarioInicial" [ngClass]="{'is-invalid': submitted && f.horarioInicial.errors}" />
                         <div *ngIf="submitted && f.horarioInicial.errors" class="invalid-feedback">
-                            <div *ngIf="f.horarioInicial.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.horarioInicial.errors.required">El horario de Apertura es requerido</div>
                         </div>
                     </div>
                     <label>Horario de Cierre</label>
@@ -57,7 +57,7 @@
                         </div>
                         <input formControlName="horarioFinal" type="time" class="form-control form-control-user" [(ngModel)]="negocio.horarioFinal" [ngClass]="{'is-invalid': submitted && f.horarioFinal.errors}" />
                         <div *ngIf="submitted && f.horarioFinal.errors" class="invalid-feedback">
-                            <div *ngIf="f.horarioFinal.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.horarioFinal.errors.required">El horario de Cierre es requerido</div>
                         </div>
                     </div>
                     <div class='row'>
@@ -69,7 +69,7 @@
                                     </div>
                                     <input formControlName="delivery" type="checkbox" class="form-control form-control-user" [(ngModel)]="negocio.delivery" [ngClass]="{'is-invalid': submitted && f.delivery.errors}">
                                     <div *ngIf="submitted && f.delivery.errors" class="invalid-feedback">
-                                        <div *ngIf="f.delivery.errors.required">La cédula es requerida</div>
+                                        <div *ngIf="f.delivery.errors.required">Campo Requerido</div>
                                     </div>
                                 </div>
                                 <div class="input-group mb-3">
@@ -78,7 +78,7 @@
                                     </div>
                                     <input formControlName="reserva" type="checkbox" class="form-control form-control-user" [(ngModel)]="negocio.reserva" [ngClass]="{'is-invalid': submitted && f.reserva.errors}">
                                     <div *ngIf="submitted && f.reserva.errors" class="invalid-feedback">
-                                        <div *ngIf="f.reserva.errors.required">La cédula es requerida</div>
+                                        <div *ngIf="f.reserva.errors.required">Campo Requerido</div>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                 <input formControlName="ciudad" id="ciudad" type="text" class="form-control form-control-user" [(ngModel)]="negocio.Direccion.ciudad" ngModelChange="negocio.Direccion.ciudad = $event" [ngClass]="{'is-invalid': submitted && f.ciudad.errors}" placeholder="Ciudad"
                                 />
                                 <div *ngIf="submitted && f.ciudad.errors" class="invalid-feedback">
-                                    <div *ngIf="f.ciudad.errors.required">La cédula es requerida</div>
+                                    <div *ngIf="f.ciudad.errors.required">La ciudad es requerida</div>
                                 </div>
                             </div>
                             <div class="input-group mb-3">
@@ -108,7 +108,7 @@
                                 </div>
                                 <input formControlName="referencia" id="referencia" type="text" class="form-control form-control-user" [(ngModel)]="negocio.Direccion.referencia" [ngClass]="{'is-invalid': submitted && f.referencia.errors}" placeholder="Referencia" />
                                 <div *ngIf="submitted && f.referencia.errors" class="invalid-feedback">
-                                    <div *ngIf="f.referencia.errors.required">La cédula es requerida</div>
+                                    <div *ngIf="f.referencia.errors.required">La referencia es requerida</div>
                                 </div>
                             </div>
                         </div>
@@ -150,8 +150,8 @@
                         </div>
                         <input formControlName="nombre" type="text" class="form-control form-control-user" placeholder="Nombre del Producto" [(ngModel)]="producto.nombre" [ngClass]="{'is-invalid': submitted && f.nombre.errors}" />
                         <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
-                            <div *ngIf="f.nombre.errors.required">La cédula es requerida</div>
-                            <div *ngIf="f.nombre.errors.minlength">La cédula debe tener mínimo 10 caracteres</div>
+                            <div *ngIf="f.nombre.errors.required">El nombre del producto es requerido</div>
+                            <div *ngIf="f.nombre.errors.minlength">La nombre del producto debe tener mínimo 2 caracteres</div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -160,8 +160,8 @@
                         </div>
                         <input formControlName="categoria" type="text" class="form-control form-control-user" placeholder="Categoría" [(ngModel)]="producto.categoria" [ngClass]="{'is-invalid': submitted && f.categoria.errors}" />
                         <div *ngIf="submitted && f.categoria.errors" class="invalid-feedback">
-                            <div *ngIf="f.categoria.errors.required">La cédula es requerida</div>
-                            <div *ngIf="f.categoria.errors.minlength">La cédula debe tener mínimo 10 caracteres</div>
+                            <div *ngIf="f.categoria.errors.required">La categoría es requerida</div>
+                            <div *ngIf="f.categoria.errors.minlength">La categoría debe tener mínimo 2 caracteres</div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -170,7 +170,7 @@
                         </div>
                         <input formControlName="stock" type="number" class="form-control form-control-user" placeholder="Stock" [(ngModel)]="producto.stock" [ngClass]="{'is-invalid': submitted && f.stock.errors}" />
                         <div *ngIf="submitted && f.stock.errors" class="invalid-feedback">
-                            <div *ngIf="f.stock.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.stock.errors.required">El stock es requerido</div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -179,7 +179,7 @@
                         </div>
                         <input formControlName="precio" type="number |number:'1.2'" class="form-control form-control-user" placeholder="Precio" [(ngModel)]="producto.precio" [ngClass]="{'is-invalid': submitted && f.precio.errors}" />
                         <div *ngIf="submitted && f.precio.errors" class="invalid-feedback">
-                            <div *ngIf="f.precio.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.precio.errors.required">El precio es requerido</div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -188,7 +188,7 @@
                         </div>
                         <textarea formControlName="descripcion" type="text" class="form-control form-control-user" placeholder="Descripción" [(ngModel)]="producto.descripcion" [ngClass]="{'is-invalid': submitted && f.descripcion.errors}"></textarea>
                         <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
-                            <div *ngIf="f.descripcion.errors.required">La cédula es requerida</div>
+                            <div *ngIf="f.descripcion.errors.required">La descripción es requerida</div>
                         </div>
                     </div>
                 </div>

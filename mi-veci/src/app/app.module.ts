@@ -20,7 +20,7 @@ import * as cloudinary from 'cloudinary-core';
 import {CloudinarySettings} from './settings';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ModalNegocioComponent } from './shared/ComponentShared/modal-negocio/modal-negocio.component';
-import { EstadoPedidoPipe } from './shared/pipes/estado-pedido.pipe';
+import { EncryptService } from './services/Encrypt/encrypt.service';
 
 
 @NgModule({
@@ -30,6 +30,7 @@ import { EstadoPedidoPipe } from './shared/pipes/estado-pedido.pipe';
     DetalleNegocioComponent,
     UploadFileComponent,
     ModalNegocioComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -49,6 +50,7 @@ import { EstadoPedidoPipe } from './shared/pipes/estado-pedido.pipe';
       useClass: ServiceInterceptor,
       multi: true
     },
+    EncryptService,
     PersonaService, {
       provide: HTTP_INTERCEPTORS,
       useClass: ServiceInterceptor,

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Pedido } from '../../models/Pedido/pedido';
 import { retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { NgbPaginationNumberContext } from '@ng-bootstrap/ng-bootstrap/pagination/pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,21 @@ export class PedidoService {
 
   filtrar(id: number,rol:string): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.url + '/MyOrders/?id=' + id+'&&rol='+rol, environment.httpOptions).pipe(retry(1));
+  }
+
+  UltimosPedidos(idCliente:number):Observable<Pedido[]>{
+    return this.http.get<Pedido[]>(this.url + '/UltimosPedidos/?id=' + idCliente, environment.httpOptions).pipe(retry(1));
+  }
+  TotalPedidos(idCliente:number):Observable<any>{
+    return this.http.get<any>(this.url + '/TotalPedidos/?id=' + idCliente, environment.httpOptions).pipe(retry(1));
+  }
+  PedidoMasCaro(idCliente:number):Observable<any>{
+    return this.http.get<any>(this.url + '/PedidoMasCaro/?id=' + idCliente, environment.httpOptions).pipe(retry(1));
+  }
+  PedidoMasBarato(idCliente:number):Observable<any>{
+    return this.http.get<any>(this.url + '/PedidoMasBarato/?id=' + idCliente, environment.httpOptions).pipe(retry(1));
+  }
+  Top5Productos(idCliente:number):Observable<any>{
+    return this.http.get<any>(this.url + '/Top5Pedidos/?id=' + idCliente, environment.httpOptions).pipe(retry(1));
   }
 }

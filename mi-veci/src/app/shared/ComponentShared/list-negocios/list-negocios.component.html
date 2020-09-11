@@ -1,6 +1,12 @@
 <div class="loading" *ngIf="loading"></div>
 <div class="page-inner" *ngIf="!loading">
-    <app-search title="Negocios Cercanos" (mostrar)="Ocultar($event)"></app-search>
+    <div class="btn-group ml-auto">
+        <select [(ngModel)]="opcionSeleccionada" (change)="capturar()" *ngIf="rol=='C'">
+            <option value="T">Todos</option>
+            <option value="A">Negocios Abiertos</option>
+        </select>
+    </div>
+    <app-search title="Negocios Cercanos" (mostrar)="Ocultar($event)" [tipo]="opcionSeleccionada"></app-search>
     <div class="row" *ngIf="rol == 'N'">
         <div class="col-12 col-sm-6 col-md-3">
             <button class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop" (click)="AbrirModal()">
@@ -13,8 +19,13 @@
         <br><br><br>
     </div>
     <div class="row" *ngIf="mostrarTarjetas">
-        <div class="col-md-3" *ngFor="let item of negocios |paginate: {itemsPerPage: 4, currentPage: pageActual}; index as i">
+        <div class="col-md-3" *ngFor="let item of negociosFilter |paginate: {itemsPerPage: 4, currentPage: pageActual}; index as i">
             <app-negocio-card [negocio]="item" (eliminado)="Actualizar($event)" (negocioSelect)="Editar($event)"></app-negocio-card>
+        </div>
+    </div>
+    <div class="row" *ngIf="mostrarTarjetas && rol=='C'">
+        <div class="col-md-12" *ngIf="negociosFilter.length == 0">
+            <h1>No existe negocios disponibles</h1>
         </div>
     </div>
     <pagination-controls (pageChange)="pageActual = $event" autoHide="true" responsive="true" previousLabel="" nextLabel=""></pagination-controls>

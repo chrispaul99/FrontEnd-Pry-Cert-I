@@ -14,10 +14,12 @@ import { DetalleService } from 'src/app/services/Detalle/detalle.service';
 export class SearchComponent implements OnInit {
 
   @Input() title;
+  @Input() tipo:string = "T";
   @Input() idNegocio: number;
   @Output() mostrar = new EventEmitter<boolean>();
   productos: Producto[];
   negocios: Negocio[];
+  negociosFilter:Negocio[]=[];
   pageActual = 1;
   mostrarProductos: boolean;
   mostrarNegocios: boolean;
@@ -68,7 +70,8 @@ export class SearchComponent implements OnInit {
               this.mostrar.emit(false);
               this.mostrarNegocios = false;
             }
-          }
+          },(error)=>console.log(error),
+          ()=>this.capturar()
         );
         break;
       }
@@ -113,4 +116,57 @@ export class SearchComponent implements OnInit {
       }
     }
   }
+  NegociosArbiertos(){
+    this.negociosFilter = [];
+    this.negocios.forEach(element => {
+      if(this.verificarHorario(element.horarioInicial,element.horarioFinal)){
+        this.negociosFilter.push(element);
+      }
+    });
+  }
+  TodosNegocio(){
+    
+    this.negociosFilter = this.negocios;
+  }
+  capturar() {
+    console.log("entre");
+    console.log(this.tipo);
+    if(this.tipo !="T")
+      this.NegociosArbiertos();
+    else
+      this.TodosNegocio();
+    console.log(this.negociosFilter);
+  }
+  verificarHorario(inicio: string, fin: string): boolean{
+    const horaActual = new Date();
+    const horarioOpen = inicio.split(':');
+    const horarioClose = fin.split(':');
+    const Open = new Date();
+    const Close = new Date();
+    // tslint:disable-next-line: radix
+    Open.setHours(parseInt(horarioOpen[0]), parseInt(horarioOpen[1]), parseInt(horarioOpen[2]));
+    // tslint:disable-next-line: radix
+    Close.setHours(parseInt(horarioClose[0]), parseInt(horarioClose[1]), parseInt(horarioClose[2]));
+    if (Open.getTime() > Close.getTime()){
+      // tslint:disable-next-line: radix
+      Close.setHours(parseInt(horarioClose[0]) + 24, parseInt(horarioClose[1]), parseInt(horarioClose[2]));
+       // tslint:disable-next-line: radix
+      if (parseInt(horarioOpen[0]) > 12){
+         // tslint:disable-next-line: radix
+        Open.setHours(parseInt(horarioOpen[0]) - 12, parseInt(horarioOpen[1]), parseInt(horarioOpen[2]));
+      }
+    }
+    return this.ControlHorario(Open.getTime(), Close.getTime(), horaActual.getTime());
+  }
+
+  ControlHorario(Inicio: number, Fin: number, actual: number): boolean{
+    if (Inicio === Fin){
+      return true;
+    }
+    if ( actual < Fin && actual >= Inicio)
+    {
+      return true;
+    }
+    return false;
+    }
 }

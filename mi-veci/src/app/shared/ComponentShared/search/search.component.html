@@ -21,7 +21,7 @@
     </div>
 </div>
 <div class="row" *ngIf="mostrarNegocios">
-    <div class="col-md-3" *ngFor="let item of negocios |paginate: {itemsPerPage: 4, currentPage: pageActual}; index as i">
+    <div class="col-md-3" *ngFor="let item of negociosFilter |paginate: {itemsPerPage: 4, currentPage: pageActual}; index as i">
         <app-negocio-card [negocio]="item"></app-negocio-card>
     </div>
 </div>

@@ -26,7 +26,7 @@ export class UbicacionRegisterComponent implements OnInit {
   constructor( private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.ubicacion.direccion = new Direccion();
+    this.ubicacion.Direccion = new Direccion();
     this.form = this.formBuilder.group({
       ciudad: ['', [Validators.required]],
       referencia: ['', [Validators.required]],
@@ -71,15 +71,15 @@ marcador(){
             .addTo(this.mapa);
         markerAux = marker;
         marker.on('dragend', () => {
-        this.ubicacion.direccion.latitud = marker._lngLat.lat;
-        this.ubicacion.direccion.longitud = marker._lngLat.lng;
+        this.ubicacion.Direccion.latitud = marker._lngLat.lat;
+        this.ubicacion.Direccion.longitud = marker._lngLat.lng;
         console.log('DRAG: ' + marker.getLngLat());
         });
         console.log('CLICK' + lon + ' / ' + lat);
-        this.ubicacion.direccion.latitud = lat;
-        this.ubicacion.direccion.longitud = lon;
-        this.ubicacion.direccion.nombre = 'Dirección: ' + this.ubicacion.nombres + ' ' + this.ubicacion.apellidos;
-        console.log(this.ubicacion.direccion.nombre);
+        this.ubicacion.Direccion.latitud = lat;
+        this.ubicacion.Direccion.longitud = lon;
+        this.ubicacion.Direccion.nombre = 'Dirección: ' + this.ubicacion.nombres + ' ' + this.ubicacion.apellidos;
+        console.log(this.ubicacion.Direccion.nombre);
     }
     });
     /*

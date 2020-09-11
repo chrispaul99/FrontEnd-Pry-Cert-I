@@ -5,6 +5,7 @@ import { MisPedidosClienteRoutingModule } from './mis-pedidos-cliente-routing.mo
 import { MisPedidosClienteComponent } from './mis-pedidos-cliente.component';
 import { SharedModule } from '../../../../../shared/pipes/shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     MisPedidosClienteRoutingModule,
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
   ]
 })
 export class MisPedidosClienteModule { }

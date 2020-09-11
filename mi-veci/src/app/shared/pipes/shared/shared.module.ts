@@ -11,6 +11,9 @@ import { NegocioCardComponent } from '../../ComponentShared/negocio-card/negocio
 import { SearchComponent } from '../../ComponentShared/search/search.component';
 import { RolPipe } from '../rol.pipe';
 import { EstadoPedidoPipe } from '../estado-pedido.pipe';
+import { GraficaVerticalComponent } from '../../ComponentShared/grafica-vertical/grafica-vertical.component';
+import { GraficaHorizontalComponent } from '../../ComponentShared/grafica-horizontal/grafica-horizontal.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -25,11 +28,14 @@ import { EstadoPedidoPipe } from '../estado-pedido.pipe';
     NoImagePipe,
     RolPipe,
     EstadoPedidoPipe,
+    GraficaVerticalComponent,
+    GraficaHorizontalComponent,
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     NgxPaginationModule,
+    NgxChartsModule,
   ],
   exports: [
     FooterComponent,
@@ -41,6 +47,8 @@ import { EstadoPedidoPipe } from '../estado-pedido.pipe';
     NoImagePipe,
     RolPipe,
     EstadoPedidoPipe,
+    GraficaVerticalComponent,
+    GraficaHorizontalComponent,
   ]
 })
 export class SharedModule { }

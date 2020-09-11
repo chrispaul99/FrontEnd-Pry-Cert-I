@@ -74,7 +74,7 @@
     <div *ngIf="!loading">
         <div class="row" *ngIf="rol == 'C' || rol == 'A'">
             <div class="col-12 col-sm-6 col-md-3">
-                <button class="btn btn-primary" (click)="enviarListado()">
+                <button class="btn btn-primary" (click)="enviarListado()" *ngIf="verificarHorario(negocio.horarioInicial,negocio.horarioFinal)">
                 <span class="btn-label">
                     <i class="fa fa-bookmark"></i>
                 </span>
